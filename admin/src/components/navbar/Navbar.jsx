@@ -1,6 +1,6 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
@@ -16,8 +16,7 @@ function Navbar() {
         </div>
         <div className="navbarItems">
           <div className="navbarItem">
-            <LanguageOutlinedIcon className="navbarItemIcon" />
-            English
+            <LogoutIcon className="navbarItemIcon"/>
           </div>
           <div className="navbarItem">
             <DarkModeOutlinedIcon className="navbarItemIcon" />
@@ -37,11 +36,7 @@ function Navbar() {
             <ListOutlinedIcon className="navbarItemIcon" />
           </div>
           <div className="navbarItem">
-            <img
-              src="https://scontent.fsgn17-1.fna.fbcdn.net/v/t39.30808-6/305292966_1702621403471181_2121299522920259958_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=NGANxQ67RRUAX8PmTCv&_nc_ht=scontent.fsgn17-1.fna&oh=00_AT-jxG6Igp3rAbYloODRis0AF5HWVl2Y2waOJ1uLJyIsvw&oe=635A7BE7"
-              alt=" avatar"
-              className="avatar"
-            />
+            <img src="https://images.unsplash.com/photo-1664574652984-5b5f769bef07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt=" avatar" className="avatar" />
           </div>
         </div>
       </div>

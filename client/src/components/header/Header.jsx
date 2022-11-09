@@ -97,8 +97,10 @@ function Header({ type }) {
               </Link>
             </div>
             <div className="headerListItem">
-              <FaMapMarkedAlt icon={faBed} className="headerIcon" />
-              <span>Destinations</span>
+              <Link to="/travelPins">
+                <FaMapMarkedAlt icon={faBed} className="headerIcon" />
+                <span>Destinations</span>
+              </Link>
             </div>
             <div className="headerListItem">
               <MdTipsAndUpdates icon={faTaxi} className="headerIcon" />

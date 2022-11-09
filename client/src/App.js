@@ -10,6 +10,7 @@ import Navbar from "../src/components/navbar/Navbar"
 import ProfileSetting from "./Pages/profileSetting/ProfileSetting";
 import Register from "./Pages/register/Register";
 import Login from "./Pages/login/Login";
+import TravelPins from "./Pages/travelpins/TravelPins";
 import { Context } from "./context/Context";
 import { useContext } from "react";
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/hotels" element={<List />} />
           <Route path="/mapAdvice" element={<MapAdvice />} />
           <Route path="/travelBlog" element={<TravelBlog />} />
+          <Route path="/travelPins" element={<TravelPins />} />
           <Route path="/travelBlog/:id" element={<SingleBlogPage />} />
           <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/hotels/:id" element={<Hotel />} />

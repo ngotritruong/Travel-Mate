@@ -73,14 +73,13 @@ function ProfileSetting() {
               <label>Username</label>
               <input
                 type="text"
-                placeholder={user.username}
-
+                placeholder = {user.username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <label>Email</label>
               <input
                 type="email"
-                placeholder={user.email}
+                placeholder = {user.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label>Phone: </label>

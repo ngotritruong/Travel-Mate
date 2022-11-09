@@ -7,7 +7,7 @@ function Datatable() {
         {
             field: "action",
             headerName: "Action",
-            width: 300,
+            width: 200,
             renderCell:()=>{
                 return (
                     <div className="cellAction">
@@ -20,7 +20,7 @@ function Datatable() {
     ]
   return (
     <div className="dataTable">
-      <div style={{ height: 683, width: "100%" }}>
+      <div style={{ height: 670, width: "100%" }}>
         <DataGrid
           rows={userRows}
           columns={userColumns.concat(actionColumn)}

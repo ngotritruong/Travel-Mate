@@ -4,6 +4,9 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
+import WriteBlog from "./pages/writeblog/WriteBlog";
+import BlogPosts from "./pages/blogposts/BlogPosts";
+import SingleBlog from "./pages/singleBlog/SingleBlog";
 import New from "./pages/new/New";
 function App() {
   return (
@@ -16,12 +19,14 @@ function App() {
             <Route path="/users" >
               <Route index element={<List/>} />
               <Route path=":userId" element={<Single/>} />
-              <Route path="new" element={<New/>} />
+              
             </Route>
-            <Route path="/products " >
-              <Route index element={<List/>} />
-              <Route path=":productId" element={<Single/>} />
-              <Route path="new" element={<New/>} />
+            <Route path="/writeblog" >
+              <Route index element={<WriteBlog/>} />
+            </Route>
+            <Route path="/blogposts" >
+              <Route index element={<BlogPosts/>} />
+              <Route path=":postId" element={<SingleBlog/>} />
             </Route>
           </Route>
         </Routes>
