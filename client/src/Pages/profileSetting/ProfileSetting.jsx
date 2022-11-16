@@ -16,6 +16,8 @@ function ProfileSetting() {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5000/images/"
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
@@ -33,10 +35,10 @@ function ProfileSetting() {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      updatedUser.photo = filename;
+      updatedUser.img = filename;
       try {
         await axios.post("/upload", data);
-      } catch (err) {}
+      } catch (err) { }
     }
     try {
       const res = await axios.put("/users/" + user._id, updatedUser);
@@ -69,17 +71,17 @@ function ProfileSetting() {
                   className="settingsPPInput"
                   onChange={(e) => setFile(e.target.files[0])}
                 />
-              </div>
+                </div>
               <label>Username</label>
               <input
                 type="text"
-                placeholder = {user.username}
+                placeholder={user.username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <label>Email</label>
               <input
                 type="email"
-                placeholder = {user.email}
+                placeholder={user.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label>Phone: </label>
@@ -110,12 +112,12 @@ function ProfileSetting() {
                 Update
               </button>
               {success && (
-            <span
-              style={{ color: "green", textAlign: "center", marginTop: "20px" }}
-            >
-              Profile has been updated...
-            </span>
-          )}
+                <span
+                  style={{ color: "green", textAlign: "center", marginTop: "20px" }}
+                >
+                  Profile has been updated...
+                </span>
+              )}
             </form>
           </div>
         </div>

@@ -6,7 +6,16 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 function Navbar() {
+  const { admin, dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+  const PF = "http://localhost:8800/images/"
   return (
     <div className="navbar">
       <div className="navbarWrapper">
@@ -15,9 +24,13 @@ function Navbar() {
           <SearchOutlinedIcon className="navbarItemIcon" />
         </div>
         <div className="navbarItems">
-          <div className="navbarItem">
-            <LogoutIcon className="navbarItemIcon"/>
-          </div>
+          <Link to="/">
+            <div className="navbarItem">
+              <LogoutIcon onClick={handleLogout} className="navbarItemIcon" />
+            </div>
+          </Link>
+
+
           <div className="navbarItem">
             <DarkModeOutlinedIcon className="navbarItemIcon" />
           </div>
@@ -36,7 +49,26 @@ function Navbar() {
             <ListOutlinedIcon className="navbarItemIcon" />
           </div>
           <div className="navbarItem">
-            <img src="https://images.unsplash.com/photo-1664574652984-5b5f769bef07?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt=" avatar" className="avatar" />
+            {admin ? (
+              <Link to="/profilesetting">
+                <img
+                  src={admin.img ? PF + admin.img : "https://images.unsplash.com/photo-1566903697359-6f8ee1c1ab20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWUlMjBjdXRlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"}
+                  alt=""
+                  className="avatar"
+                />
+              </Link>
+            ) : (
+              <div className="navItems">
+                <Link className="link" to="/register">
+                  <button className="navButton">Register</button>
+                </Link>
+                <Link className="link" to="/login">
+                  <button className="navButton">Login</button>
+                </Link>
+
+              </div>
+            )}
+
           </div>
         </div>
       </div>

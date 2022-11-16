@@ -11,8 +11,10 @@ import ProfileSetting from "./Pages/profileSetting/ProfileSetting";
 import Register from "./Pages/register/Register";
 import Login from "./Pages/login/Login";
 import TravelPins from "./Pages/travelpins/TravelPins";
+import TravelTips from "./Pages/traveltips/TravelTips";
 import { Context } from "./context/Context";
 import { useContext } from "react";
+import SingleTip from "./Pages/singelTip/SingleTip";
 function App() {
   const {user} = useContext(Context);
   return (
@@ -26,7 +28,9 @@ function App() {
           <Route path="/hotels" element={<List />} />
           <Route path="/mapAdvice" element={<MapAdvice />} />
           <Route path="/travelBlog" element={<TravelBlog />} />
-          <Route path="/travelPins" element={<TravelPins />} />
+          <Route path="/travelTips" element={<TravelTips />} />
+          <Route path="/travelTips/:id" element={<SingleTip />} />
+          <Route path="/travelPins" element={ user ? <TravelPins /> : <Login />} />
           <Route path="/travelBlog/:id" element={<SingleBlogPage />} />
           <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/hotels/:id" element={<Hotel />} />

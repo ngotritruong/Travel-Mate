@@ -24,9 +24,14 @@ function TravelPins() {
   };
 
   const handleAddClick = (e) => {
-    console.log(typeof e.lngLat.toArray()[1])
-    
+    const [longitude, latitude] = e.lngLat.toArray();
+    setNewPlace({
+      lat: latitude,
+      long: longitude,
+    });
+
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPin = {
@@ -123,7 +128,62 @@ function TravelPins() {
               )}
             </>
           ))}
-          
+          {newPlace && (
+            <>
+              <Marker
+                latitude={newPlace.lat}
+                longitude={newPlace.long}
+                offsetLeft={-3.5 * viewState.zoom}
+                offsetTop={-7 * viewState.zoom}
+              >
+                <FaMapMarkerAlt
+                  style={{
+                    fontSize: 7 * viewState.zoom,
+                    color: "tomato",
+                    cursor: "pointer",
+                  }}
+                />
+              </Marker>
+              <Popup
+                latitude={newPlace.lat}
+                longitude={newPlace.long}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setNewPlace(null)}
+                anchor="left"
+              >
+                <form onSubmit={handleSubmit} className="formPopup">
+                  <label className="pinLabel">Title</label>
+                  <input
+                    className="inputPopup"
+                    placeholder="Enter a title"
+                    autoFocus
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <label className="pinLabel">Description</label>
+                  <textarea
+                    placeholder="Say us something about this place."
+                    onChange={(e) => setDesc(e.target.value)}
+                  />
+                  <div className="rating">
+                    <label className="pinLabel">Rating</label>
+                    <select onChange={(e) => setStar(e.target.value)} className="selectPopup">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+
+                  <button type="submit" className="submitButton">
+                    Add Pin
+                  </button>
+                </form>
+              </Popup>
+            </>
+          )}
+
         </Map>
       </div>
     </div>

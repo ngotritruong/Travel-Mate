@@ -16,7 +16,7 @@ function Navbar() {
         {user ? (
           <Link to="/profilesetting">
             <img
-              src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTti2je5jP4NJyie2Gjynf4ZklgkTOOGdloLQ&usqp=CAU"
+              src= {user.img ? PF+user.img : "https://images.unsplash.com/photo-1566903697359-6f8ee1c1ab20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWUlMjBjdXRlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"}
               alt=""
               className="navBarImgUser"
             />

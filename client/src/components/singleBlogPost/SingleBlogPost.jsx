@@ -12,7 +12,6 @@ function SingleBlogPost() {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
       setPost(res.data);
-      console.log(res)
     };
     getPost();
   }, [path]);

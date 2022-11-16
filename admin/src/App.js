@@ -7,6 +7,7 @@ import Single from "./pages/single/Single";
 import WriteBlog from "./pages/writeblog/WriteBlog";
 import BlogPosts from "./pages/blogposts/BlogPosts";
 import SingleBlog from "./pages/singleBlog/SingleBlog";
+import Register from "./pages/register/Register";
 import New from "./pages/new/New";
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/register" element={<Register/>} />
             <Route path="/users" >
               <Route index element={<List/>} />
               <Route path=":userId" element={<Single/>} />

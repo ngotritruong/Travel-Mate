@@ -3,7 +3,6 @@ import React from 'react'
 import axios from 'axios'
 import BlogHome from '../../components/blogHome/BlogHome'
 import BlogPosts from '../../components/blogPosts/BlogPosts'
-import BlogSidebar from '../../components/blogSidebar/BlogSidebar'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 function TravelBlog() {
@@ -21,7 +20,7 @@ function TravelBlog() {
         <BlogHome />
         <div className="blogContainer">
           <div className="blogMain">
-              <BlogSidebar />
+              
               <BlogPosts posts={posts}/>           
           </div>
         </div>

@@ -1,5 +1,4 @@
 import "./singleBlogPage.css";
-import BlogSidebar from "../../components/blogSidebar/BlogSidebar";
 import SingleBlogPost from "../../components/singleBlogPost/SingleBlogPost";
 
 function singleBlogPage() {
@@ -7,7 +6,7 @@ function singleBlogPage() {
     <div className="singleBlog">
       <div className="singleBlogContainer">
         <div className="singleBlogWrapper">
-          <BlogSidebar />
+          
           <SingleBlogPost />
         </div>
       </div>

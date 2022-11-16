@@ -24,10 +24,10 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    !user && res.status(400).json("Wrong credentials!");
+    !user && res.status(400).json("User not found!");
 
     const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Wrong credentials!")
+    !validated && res.status(400).json("Wrong password or username!")
     const { password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (err) {
@@ -43,7 +43,6 @@ router.post("/registerAd", async (req, res) => {
     const newAdmin = new Admin({
       nameAdmin: req.body.nameAdmin,
       email: req.body.email,
-      phone: req.body.phone,
       password: hashedPass,
     });
     const admin = await newAdmin.save();
@@ -55,7 +54,7 @@ router.post("/registerAd", async (req, res) => {
 
 router.post("/loginAd", async (req, res) => {
   try {
-    const admin = await Admin.findOne({ nameAdmin: req.body.nameAdmin });
+    const admin = await Admin.findOne({ email: req.body.email });
     !admin && res.status(400).json("Wrong credentials!");
 
     const validated = await bcrypt.compare(req.body.password, admin.password);

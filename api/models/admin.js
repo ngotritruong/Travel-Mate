@@ -13,11 +13,11 @@ const AdminSchema = new mongoose.Schema(
     },
     img: {
       type: String,
-      required: false,
+      default: "",
     },
     phone: {
       type: String,
-      required: true,
+      default: "",
     },
     password: {
       type: String,

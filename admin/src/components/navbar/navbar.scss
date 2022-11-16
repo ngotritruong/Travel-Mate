@@ -71,6 +71,16 @@
           top: 0;
           right: 0;
         }
+        .navButton {
+          height: 35px;
+          margin-left: 20px;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 4px;
+          cursor: pointer;
+          color: white;
+          background-color: #148bed;
+        }
       }
     }
   }

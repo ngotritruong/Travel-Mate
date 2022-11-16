@@ -11,10 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "react-date-range/dist/theme/default.css"; // theme css file
 import "react-date-range/dist/styles.css"; // main css file
 import { DateRange } from "react-date-range";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { MdTipsAndUpdates } from "react-icons/md";
+import { Context } from "../../context/Context";
 import "./header.css";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
@@ -27,7 +28,7 @@ function Header({ type }) {
   const [destination, setDestination] = useState("");
 
   const navigate = useNavigate();
-
+  const { user } = useContext(Context);
   const [options, setOptions] = useState({
     adult: 2,
     children: 0,
@@ -103,8 +104,11 @@ function Header({ type }) {
               </Link>
             </div>
             <div className="headerListItem">
-              <MdTipsAndUpdates icon={faTaxi} className="headerIcon" />
-              <span>Travel Tips</span>
+              <Link to="/travelTips">
+                <MdTipsAndUpdates icon={faTaxi} className="headerIcon" />
+                <span>Travel Tips</span>
+              </Link>
+
             </div>
           </div>
         )}
@@ -118,8 +122,14 @@ function Header({ type }) {
               corrupti reprehenderit inventore recusandae quidem iusto
               laudantium fuga, nihil quae, doloribus impedit mollitia!
             </p>
+            {
+              !user &&
+              <Link to="/login">
+                <button className="headerBtn">Sign in / Register</button>
+              </Link>
+            }
 
-            <button className="headerBtn">Sign in / Register</button>
+
 
             <div className="headerSearch">
               <div className="headerSearchItem">
