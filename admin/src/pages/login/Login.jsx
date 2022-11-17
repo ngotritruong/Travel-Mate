@@ -3,7 +3,7 @@ import "./login.scss";
 import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import loginImg from "../../images/loginimage.svg"
+import loginImg from "../../images/loginimage.svg";
 export default function Login() {
   const adminRef = useRef();
   const passwordRef = useRef();
@@ -11,17 +11,17 @@ export default function Login() {
   const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     dispatch({ type: "LOGIN_START" });
     try {
-        const res = await axios.post("auth/loginAd", {
+        const res = await axios.post("/auth/loginAd", {
         email: adminRef.current.value,
         password: passwordRef.current.value,
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
       setError(true);
-      dispatch({ type: "LOGIN_FAILURE" });
-
+     dispatch({ type: "LOGIN_FAILURE" });
     }
   };
   console.log(admin);

@@ -20,7 +20,7 @@ function chart() {
   return (
     <div className="chart">
         <div className="title">Last 6 Months (Revenue) </div>
-      <ResponsiveContainer width="100%" aspect={11/5}>
+      <ResponsiveContainer width="100%" aspect={8/5}>
         <AreaChart
           width={730}
           height={250}

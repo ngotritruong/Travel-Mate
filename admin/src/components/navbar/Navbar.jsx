@@ -20,7 +20,7 @@ function Navbar() {
     <div className="navbar">
       <div className="navbarWrapper">
         <div className="navbarSearch">
-          <input type="text" placeholder="Search.. " name="" id="" />
+          <input type="text" placeholder="Search.. " name="" id="searchNavbar" />
           <SearchOutlinedIcon className="navbarItemIcon" />
         </div>
         <div className="navbarItems">

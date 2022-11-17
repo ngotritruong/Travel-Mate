@@ -9,12 +9,12 @@ function WriteBlog() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
-  const { user } = useContext(Context);
+  const { admin } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
-      username: user.username,
+      nameAdmin: admin.nameAdmin,
       title,
       desc,
     };
