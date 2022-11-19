@@ -1,11 +1,11 @@
-import "./writeblog.scss";
+import "./writeTips.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
 import { Context } from "../../context/Context";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useContext, useState } from "react";
-function WriteBlog() {
+function WriteTips() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
@@ -13,7 +13,7 @@ function WriteBlog() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPost = {
+    const newTips = {
       nameAdmin: admin.nameAdmin,
       title,
       desc,
@@ -23,20 +23,20 @@ function WriteBlog() {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      newPost.photo = filename;
+      newTips.photo = filename;
       try {
         await axios.post("/upload", data);
       } catch (err) { }
     }
     try {
-      const res = await axios.post("/posts", newPost);
-      window.location.replace("/blogposts/" + res.data._id);
+      const res = await axios.post("/tips", newTips);
+      window.location.replace("/travelTips/" + res.data._id);
     } catch (err) { }
   };
   return (
-    <div className="writeBlog">
+    <div className="writeTips">
       <Sidebar />
-      <div className="writeBlogWrapper">
+      <div className="writeTipsWrapper">
         <Navbar />
         <div className="write">
           {file && (
@@ -79,4 +79,4 @@ function WriteBlog() {
   );
 }
 
-export default WriteBlog;
+export default WriteTips;

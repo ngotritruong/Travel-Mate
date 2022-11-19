@@ -48,3 +48,13 @@
   font-size: 30px;
   font-weight: 600;
 }
+
+.sgpButton{
+  background-color: #137ae8;
+  color: white;
+  padding: 5px;
+  border: 0;
+  width: 70px;
+  border-radius: 20px 5px 5px 20px;
+  margin-left: 20px;
+}

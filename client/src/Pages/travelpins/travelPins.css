@@ -28,6 +28,7 @@
 
 }
 
+
 .pinLabel {
   width: max-content;
   color: tomato;
@@ -72,6 +73,11 @@
   text-align: center;
 }
 
+.pinIcon{
+  color:#148bed;
+  margin: 5px;
+  font-size: 20px;
+}
 .inFo {
   display: flex;
   justify-content: space-between;

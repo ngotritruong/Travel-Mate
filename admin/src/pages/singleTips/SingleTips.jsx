@@ -1,4 +1,4 @@
-import "./singleBlog.scss";
+import "./singleTips.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import EditIcon from "@mui/icons-material/Edit";
@@ -8,10 +8,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import axios from "axios";
-function SingleBlog() {
+function SingleTips() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const [post, setPost] = useState({});
+  const [tips, setTips] = useState({});
   const PF = "http://localhost:8800/images/";
   const { admin } = useContext(Context);
   const [title, setTitle] = useState("");
@@ -19,18 +19,18 @@ function SingleBlog() {
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
-    const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
-      setPost(res.data);
+    const getTips = async () => {
+      const res = await axios.get("/tips/" + path);
+      setTips(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
     };
-    getPost();
+    getTips();
   }, [path]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`/tips/${tips._id}`, {
         data: { nameAdmin: admin.nameAdmin },
       });
       window.location.replace("/");
@@ -39,7 +39,7 @@ function SingleBlog() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`/tips/${tips._id}`, {
         nameAdmin: admin.nameAdmin,
         title,
         desc,
@@ -48,62 +48,62 @@ function SingleBlog() {
     } catch (err) { }
   };
   return (
-    <div className="singleBlog">
+    <div className="singleTips">
       <Sidebar />
-      <div className="singleBlogContainer">
+      <div className="singleTipsContainer">
         <Navbar />
-        <div className="singlePost">
-          <div className="singlePostWrapper">
-            {post.photo && (
-              <img src={PF + post.photo} alt="" className="singlePostImg" />
+        <div className="singleTip">
+          <div className="singleTipsWrapper">
+            {tips.photo && (
+              <img src={PF + tips.photo} alt="" className="singleTipsImg" />
             )}
             {updateMode ? (
               <input
                 type="text"
                 value={title}
-                className="singlePostTitleInput"
+                className="singleTipsTitleInput"
                 autoFocus
                 onChange={(e) => setTitle(e.target.value)}
               />
             ) : (
-              <h1 className="singlePostTitle">
+              <h1 className="singleTipsTitle">
                 {title}
-                {post.nameAdmin === admin?.nameAdmin && (
-                  <div className="singlePostEdit">
+                {tips.nameAdmin === admin?.nameAdmin && (
+                  <div className="singleTipsEdit">
                     <EditIcon
-                      className="singlePostIcon far fa-edit"
+                      className="singleTipsIcon far fa-edit"
                       onClick={() => setUpdateMode(true)}
                     />
                     <DeleteIcon
-                      className="singlePostIcon far fa-trash-alt"
+                      className="singleTipsIcon far fa-trash-alt"
                       onClick={handleDelete}
                     />
                   </div>
                 )}
               </h1>
             )}
-            <div className="singlePostInfo">
-              <span className="singlePostAuthor">
+            <div className="singleTipsInfo">
+              <span className="singleTipsAuthor">
                 Author:
-                <Link to={`/?admin=${post.nameAdmin}`} className="link">
-                  <b> {post.nameAdmin}</b>
+                <Link to={`/?admin=${tips.nameAdmin}`} className="link">
+                  <b> {tips.nameAdmin}</b>
                 </Link>
               </span>
-              <span className="singlePostDate">
-                {new Date(post.createdAt).toDateString()}
+              <span className="singleTipsDate">
+                {new Date(tips.createdAt).toDateString()}
               </span>
             </div>
             {updateMode ? (
               <textarea
-                className="singlePostDescInput"
+                className="singleTipsDescInput"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
               />
             ) : (
-              <p className="singlePostDesc">{desc}</p>
+              <p className="singleTipsDesc">{desc}</p>
             )}
             {updateMode && (
-              <button className="singlePostButton" onClick={handleUpdate}>
+              <button className="singleTipsButton" onClick={handleUpdate}>
                 Update
               </button>
             )}
@@ -114,4 +114,4 @@ function SingleBlog() {
   );
 }
 
-export default SingleBlog;
+export default SingleTips;

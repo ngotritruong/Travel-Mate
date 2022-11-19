@@ -1,15 +1,16 @@
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import HistoryEduOutlinedIcon from "@mui/icons-material/HistoryEduOutlined";
 import ArticleIcon from "@mui/icons-material/Article";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import SettingsSystemDaydreamIcon from "@mui/icons-material/SettingsSystemDaydream";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import EditOffIcon from '@mui/icons-material/EditOff';
 
 import { Link } from "react-router-dom";
 
@@ -46,14 +47,22 @@ function Sidebar() {
 
           <Link to="/writeblog" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="Icon" />
-              <span>write Blog</span>
+              <HistoryEduIcon className="Icon" />
+              <span>Write Blog</span>
             </li>
           </Link>
-          <li>
-            <MapOutlinedIcon className="Icon" />
-            <span>Trip Manager</span>
-          </li>
+          <Link to="/travelTips" style={{ textDecoration: "none" }}>
+            <li>
+              <TipsAndUpdatesIcon className="Icon" />
+              <span>TravelTips</span>
+            </li>
+          </Link>
+          <Link to="/writeTips" style={{ textDecoration: "none" }}>
+            <li>
+              <EditOffIcon className="Icon" />
+              <span>Write Tips</span>
+            </li>
+          </Link>
           <p className="title">USEFUL</p>
           <li>
             <LeaderboardIcon className="Icon" />

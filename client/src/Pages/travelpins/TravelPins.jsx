@@ -3,6 +3,7 @@ import Map, { Marker, Popup } from "react-map-gl";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { ImStarFull } from "react-icons/im";
 import { useEffect, useState, useContext } from "react";
+import { AiFillFileImage } from "react-icons/ai";
 import { Context } from "../../context/Context";
 import axios from "axios";
 function TravelPins() {
@@ -13,6 +14,10 @@ function TravelPins() {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [star, setStar] = useState(0);
+  const [file, setFile] = useState(null);
+
+  const PF = "http://localhost:8800/images/";
+
   const [viewState, setViewState] = useState({
     longitude: -100,
     latitude: 40,
@@ -42,6 +47,16 @@ function TravelPins() {
       lat: newPlace.lat,
       long: newPlace.long,
     };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPin.photo = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) { }
+    }
 
     try {
       const res = await axios.post("/pins", newPin);
@@ -100,11 +115,12 @@ function TravelPins() {
                   onClose={() => setCurrentPlaceId(null)}
                 >
                   <div className="card">
-                    <img
-                      src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                    {p.photo && <img
+                      className="postImg"
+                      src={PF + p.photo}
                       alt=""
-                      className="pinImg"
-                    />
+                    />}
+                    
                     <h4 className="place">{p.title}</h4>
                     <label className="pinLabel">Review</label>
                     <p className="desc">{p.desc}</p>
@@ -152,7 +168,21 @@ function TravelPins() {
                 onClose={() => setNewPlace(null)}
                 anchor="left"
               >
+                {file && (
+                  <img className="pinImg" src={URL.createObjectURL(file)} alt="" />
+                )}
                 <form onSubmit={handleSubmit} className="formPopup">
+                  <div className="pinFormGroup">
+                    <label htmlFor="fileInput">
+                      <AiFillFileImage className="pinIcon fas fa-plus" />
+                    </label>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      style={{ display: "none" }}
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                  </div>
                   <label className="pinLabel">Title</label>
                   <input
                     className="inputPopup"

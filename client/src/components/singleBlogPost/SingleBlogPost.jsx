@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 function SingleBlogPost() {
   const Location = useLocation();
+  const PF = "http://localhost:8800/images/";
   const path = Location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   useEffect(() => {
@@ -17,10 +18,15 @@ function SingleBlogPost() {
   }, [path]);
   return (
     <div className="singleBlogPost">
+      <Link to="/travelBlog">
+        <button className="sgpButton">back</button>
+      </Link>
+      
       <div className="singlePostWrapper">
+        
         {post.photo && (
           <img
-            src={post.photo}
+            src={PF + post.photo}
             alt=""
             className="singlePostImg"
           />
@@ -35,7 +41,7 @@ function SingleBlogPost() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author: <Link to={`/travelBlog/?admin=${post.nameAdmin}`} className="link"><b>{post.nameAdmin}</b></Link>
+            Author: <Link to={`/travelBlog/?nameAdmin=${post.nameAdmin}`} className="link"><b>{post.nameAdmin}</b></Link>
           </span>
           <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>

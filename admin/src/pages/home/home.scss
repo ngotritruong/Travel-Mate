@@ -1,16 +1,15 @@
-.home{
-    display: flex;
-    height: 100vh;
-    .homeContainer{
-        flex: 6;
-        .widgets, .charts{
-            display: flex;
-            padding: 10px 30px 20px 30px; 
-            gap : 30px;
-        }
-        .charts{
-            padding-left: 5px 20px;   
-        }
+.home {
+  display: flex;
+  height: 100vh;
+  .homeContainer {
+    flex: 6;
+
+    .imageHome {
+
+      width: 100%;
+      height: calc(100vh - 65px);
+      background-size: cover;
+
     }
-    
+  }
 }

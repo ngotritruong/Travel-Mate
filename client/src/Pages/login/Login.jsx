@@ -14,7 +14,7 @@ export default function Login() {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", {
-        username: userRef.current.value,
+        email: userRef.current.value,
         password: passwordRef.current.value,
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
@@ -36,7 +36,7 @@ export default function Login() {
             <div className="login-form-content">
               <div className="form-item">
                 <label htmlFor="emailForm">Enter Email</label>
-                <input type="text" id="emailForm" ref={userRef} />
+                <input type="email" id="emailForm" ref={userRef} />
               </div>
               <div className="form-item">
                 <label htmlFor="passwordForm">Enter Password</label>

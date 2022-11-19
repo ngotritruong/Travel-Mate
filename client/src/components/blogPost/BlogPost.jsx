@@ -2,15 +2,14 @@ import "./blogPost.css";
 import React from "react";
 
 function BlogPost({post}) {
+  const PF = "http://localhost:8800/images/";
   return (
     <div className="blogPost">
-      {post.photo && (
-        <img
-        src={post.photo}
-        alt=""
+      {post.photo && <img
         className="blogPostImg"
-      />
-      )}
+        src={PF + post.photo}
+        alt=""
+      />}
       
       <div className="postInfo">
         <div className="postCats">
