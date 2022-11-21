@@ -1,6 +1,7 @@
 import "./placeDetailAv.css";
 import React from "react";
-
+import { AiFillPhone } from "react-icons/ai";
+import { SiGooglestreetview } from "react-icons/si";
 function PlaceDetailAv({ place }) {
   return (
     <div className="placeDetailContainer">
@@ -34,13 +35,13 @@ function PlaceDetailAv({ place }) {
       ))}
       {place?.phone && (
         <div className="placeBoxDetail">
-          <span>icon</span>
+          <AiFillPhone className="pdavIcon"/>
           <span>{place.phone}</span>
         </div>
       )}
       {place?.address && (
         <div className="placeBoxDetail">
-          <span>icon</span>
+          <SiGooglestreetview  className="pdavIcon"/>
           <span>{place.address}</span>
         </div>
       )}

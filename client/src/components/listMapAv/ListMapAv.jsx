@@ -2,6 +2,7 @@ import "./listMapAv.css";
 import React from "react";
 import { useState } from "react";
 import PlaceDetailAv from "../placeDetailAv/PlaceDetailAv";
+import { AiFillPhone } from "react-icons/ai";
 function ListMapAv({ places }) {
   const [slType, setSlType] = useState("Restaurant");
   const [rating, setRating] = useState("");

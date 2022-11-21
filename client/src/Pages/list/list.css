@@ -1,13 +1,4 @@
-.headList {
-  position: relative;
-  height: 30vh;
-  width: 100%;
-}
-.videoHero {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
+
 .listContainer {
   display: flex;
   justify-content: center;
@@ -18,91 +9,35 @@
   width: 100%;
   max-width: 1300px;
   display: flex;
+  flex-direction: column;
   gap: 20px;
   z-index: 3;
 }
+.destinationInfo{
+  display: flex;
+  
+}
+.hotelH5{
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
 
-.listSearch {
-  flex: 1;
-  background-color: #148bed;
+}
+.hotelContainer {
+  flex: 4;
+  background-color: #d1dde8;
   padding: 10px;
   border-radius: 5px;
   position: sticky;
   top: 80px;
-  height: max-content;
+  height: 600px;
+  padding: 20px;
 }
-.lsTitle {
-  font-weight: 500;
-  font-size: 1.3em;
-  color: white;
+.hotelReal{
+  height: 500px;
+  overflow: auto;
 }
-
-.lsItem {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.lsItem > label {
-  font-size: 13px;
-  padding-top: 10px;
-  color: white;
-}
-.lsItem > input {
-  height: 30px;
-  border: none;
-  padding: 5px;
-  outline: none;
-  border-radius: 5px;
-  color: black;
-}
-.lsItem > span {
-  height: 30px;
-  background-color: white;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.dateList {
-  top: 162px;
-  position: absolute;
-  z-index: 4;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.lsOptions {
-  padding: 10px;
-}
-.lsOptionItem {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 13px;
-  color: white;
-}
-
-.lsOptionInput {
-  width: 45px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  height: 20px;
-  align-items: center;
-  padding: 6px;
-  cursor: pointer;
-}
-.listSearch > button {
-  padding: 8px;
+.container{
   width: 100%;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 700;
-  color: #148bed;
-}
-
-.listResult {
-  flex: 3;
+  display: flex;
 }

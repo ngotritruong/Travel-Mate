@@ -1,125 +1,122 @@
 import React from "react";
-import Header from "../../components/header/Header";
+import "./list.css";
 import Footer from "../../components/footer/Footer";
 import EmailFeedBack from "../../components/emailFeedback/EmailFeedBack";
-import heroHeader from "../../Image/heroHeader.mp4";
-import SearchItem from "../../components/searchItem/SearchItem";
-
-import { DateRange } from "react-date-range";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { format } from "date-fns";
+import Hotel from "./hotel/Hotel";
+import Weather from "./weather/Weather";
+import New from "./new/New";
+import Overview from "./overview/Overview";
+import MapComponent from "./mapcompoent/Mapcompoent";
+import axios from "axios";
+const URL = "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng";
+const URLCoord = "https://trueway-geocoding.p.rapidapi.com/Geocode";
 
-import "./list.css";
+
 function List() {
-  let location = useLocation();
 
-  const [openDate, setOpenDate] = useState(false);
+  let location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [options, setOptions] = useState(location.state.options);
+  const [hotel, setHotel] = useState([]);
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+
+
+  useEffect(() => {
+    const options = {
+      params: { address: destination },
+      headers: {
+        "X-RapidAPI-Key": "02830c346emsh2606c2508f81c59p1b7059jsn5006c032fb80",
+        "X-RapidAPI-Host": "trueway-geocoding.p.rapidapi.com",
+      },
+    };
+
+    const getCoord = async () => {
+      try {
+        const { data } = await axios.get(URLCoord, options);
+        setLat(data.results[0].location.lat);
+        setLng(data.results[0].location.lng);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (destination !== "") {
+      getCoord();
+    }
+  }, [destination, lat, lng]);
+
+  useEffect(() => {
+    const options = {
+      params: {
+        latitude: lat,
+        longitude: lng,
+      },
+      headers: {
+        "X-RapidAPI-Key": "d41d1d81a3mshf2f70d0f87aa235p15df37jsn234689ca5266",
+        "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+      },
+    };
+
+    const getPlaceData = async () => {
+      try {
+        const {
+          data: { data },
+        } = await axios.get(URL, options);
+        setHotel(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (lat && lng) {
+      getPlaceData();
+    }
+  }, [lat, lng]);
+
+  const handleMove = () => {
+    window.scroll(0, 0);
+  };
 
   return (
     <div>
-      <div className="headList">
-        <video className="videoHero" autoPlay loop muted>
-          <source src={heroHeader} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        
-        <Header type="list" />
-      </div>
       <div className="listContainer">
         <div className="listWrapper">
-          <div className="listSearch">
-            <div className="lsTitle">Search</div>
-            <div className="lsItem">
-              <label htmlFor="">Destination</label>
-              <input type="text" placeholder={destination} />
+          <div className="search-bar">
+            <Overview />
+          </div>
+          <div className="destinationInfo">
+            <div className="weather">
+              <h5 style={{ fontWeight: "700" }}>Weather</h5>
+              <Weather />
             </div>
-            <div className="lsItem">
-              <label htmlFor="">Check-in date</label>
-              <span onClick={() => setOpenDate(!openDate)}>
-                {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                  date[0].endDate,
-                  "MM/dd/yyyy"
-                )}`}
-              </span>
-              {openDate && (
-                <DateRange
-                  onChange={(item) => setDate([item.selection])}
-                  minDate={new Date()}
-                  ranges={date}
-                  className="dateList"
-                />
-              )}
-            </div>
-            <div className="lsItem">
-              <label>Options</label>
-              <div className="lsOptions">
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    Min price <small>per night</small>
-                  </span>
-                  <input type="number" className="lsOptionInput" />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    Max price <small>per night</small>
-                  </span>
-                  <input type="number" className="lsOptionInput" />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Adult </span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={50}
-                    className="lsOptionInput"
-                    placeholder={options.adult}
-                  />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Children </span>
-                  <input
-                    type="number"
-                    min={0}
-                    max={50}
-                    className="lsOptionInput"
-                    placeholder={options.children}
-                  />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Room </span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={10}
-                    className="lsOptionInput"
-                    placeholder={options.room}
-                  />
-                </div>
+            <div className="hotelContainer">
+              <h5 className="hotelH5">
+                Restaurants in {destination.toUpperCase()}
+              </h5>
+              <div className="hotelReal">
+                {hotel.length > 0 ? (
+                  hotel.map((h, i) =>
+                    h.name ? <Hotel hotel={h} key={i} /> : null
+                  )
+                ) : (
+                  <h6>Loading ...</h6>
+                )}
               </div>
             </div>
-            <button>Search</button>
           </div>
-          <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+          <div className="mapComponent">
+            <MapComponent />
           </div>
+          <div className="container">
+            <New />
+          </div>
+          <EmailFeedBack />
+          <Footer />
         </div>
       </div>
-      <div className="homContainer">
-        <EmailFeedBack />
-        <Footer />
-      </div>
     </div>
+
   );
 }
 

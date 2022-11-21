@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/home/Home";
 import List from "./Pages/list/List";
-import Hotel from "./Pages/hotel/Hotel";
 import MapAdvice from "./Pages/mapAdvices/MapAdvice";
 import TravelBlog from "./Pages/travelBlog/TravelBlog";
 import SingleBlogPage from "./Pages/singleBlogPage/SingleBlogPage";
@@ -32,8 +31,6 @@ function App() {
           <Route path="/travelTips/:id" element={<SingleTip />} />
           <Route path="/travelPins" element={ user ? <TravelPins /> : <Login />} />
           <Route path="/travelBlog/:id" element={<SingleBlogPage />} />
-          <Route path="/hotels/:id" element={<Hotel />} />
-          <Route path="/hotels/:id" element={<Hotel />} />
           <Route path="/profileSetting" element={<ProfileSetting />} />
         </Routes>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./mapAdvice.css";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { getPlacesData } from "../../api/mapRequest";
 import ListMapAv from "../../components/listMapAv/ListMapAv";
 import MapBoxAv from "../../components/mapBoxAv/MapBoxAv";
@@ -15,9 +15,10 @@ function MapAdvice() {
   useEffect(() => {
     getPlacesData().then((data) => {
       setPlaces(data);
+      console.log(data);
     });
   }, [coordinates, bounds]);
-
+  
   return (
     <div className="App">
       <div className="Container">

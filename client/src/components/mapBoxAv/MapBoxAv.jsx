@@ -1,8 +1,9 @@
 import "./mapBoxAv.css";
 import * as React from "react";
-import { useState } from "react";
+import {useRef, useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Map, { Popup, Marker } from "react-map-gl";
+import { BsCheckLg } from "react-icons/bs";
 
 function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
   const [currentPlaceId, setCurrentPlaceId] = useState(false);
@@ -17,6 +18,7 @@ function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
   const handleMarkerClick = (id) => {
     setCurrentPlaceId(id);
   };
+  
 
   return (
     <div>
@@ -24,7 +26,14 @@ function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
         {...viewState}
         mapboxAccessToken={process.env.REACT_APP_MAPBOX}
         style={{ width: "100%", height: "90vh" }}
-        onMove={(evt) => setViewState(evt.viewState)}
+        onMove={(evt) => {
+          
+          setViewState(evt.viewState)
+        }
+        }
+       onViewChange={e=>{
+        console.log(e)
+       }}
         mapStyle="mapbox://styles/ngotritruong/cl7m0zpnh000614s4fkvm3252"
       >
         {placeResult.map((place, i) => (
