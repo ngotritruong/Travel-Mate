@@ -21,8 +21,6 @@ function List() {
   const [hotel, setHotel] = useState([]);
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
-
-
   useEffect(() => {
     const options = {
       params: { address: destination },
@@ -73,11 +71,6 @@ function List() {
       getPlaceData();
     }
   }, [lat, lng]);
-
-  const handleMove = () => {
-    window.scroll(0, 0);
-  };
-
   return (
     <div>
       <div className="listContainer">

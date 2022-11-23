@@ -2,7 +2,6 @@ import './hotel.css'
 import { AiFillPhone } from "react-icons/ai";
 import { BsFillStarFill } from "react-icons/bs";
 function Hotel({ hotel }) {
-  console.log(hotel);
   return (
     <div className="hotelCard">
       <div className="hotelUpper">

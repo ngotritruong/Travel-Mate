@@ -25,12 +25,12 @@ function Header({ type }) {
   const navigate = useNavigate();
   const { user } = useContext(Context);
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination } });
+    navigate("/places", { state: { destination } });
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      navigate("/hotels", { state: { destination} });
+      navigate("/places", { state: { destination} });
     }
   };
   return (

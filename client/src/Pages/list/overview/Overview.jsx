@@ -33,12 +33,12 @@ const Overview = () => {
         }
     }, [destination]);
     const handleSearch = () => {
-        navigate("/hotels", { state: { destination } });
+        navigate("/places", { state: { destination } });
     };
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
-            navigate("/hotels", { state: { destination } });
+            navigate("/places", { state: { destination } });
         }
     };
     return (
