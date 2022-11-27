@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import axios from "axios";
+import DOMPurify from "dompurify";
 function SingleBlog() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -100,7 +101,11 @@ function SingleBlog() {
                 onChange={(e) => setDesc(e.target.value)}
               />
             ) : (
-              <p className="singlePostDesc">{desc}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(desc),
+                }}
+              ></p>
             )}
             {updateMode && (
               <button className="singlePostButton" onClick={handleUpdate}>

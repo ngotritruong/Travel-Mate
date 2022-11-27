@@ -56,7 +56,7 @@ function ProfileSetting() {
           <div className="settingsWrapper">
             <div className="settingsTitle">
               <span className="settingsTitleUpdate">Hello, {user.username}</span>
-              <span className="settingsTitleDelete">Delete Account</span>
+             
             </div>
             <form className="settingsForm" onSubmit={handleSubmit}>
               <div className="settingsPP">

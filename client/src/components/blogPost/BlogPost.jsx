@@ -1,6 +1,6 @@
 import "./blogPost.css";
 import React from "react";
-
+import DOMPurify from "dompurify";
 function BlogPost({post}) {
   const PF = "http://localhost:8800/images/";
   return (
@@ -23,9 +23,11 @@ function BlogPost({post}) {
         <span className="postTitle">{post.title}</span>
         <hr />
         <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
-        <p className="postDes">
-          {post.desc}
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.desc),
+          }}
+          className="postDes"></p>
       </div>
     </div>
   );

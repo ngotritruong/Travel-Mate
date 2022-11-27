@@ -5,6 +5,8 @@ import { ImStarFull } from "react-icons/im";
 import { useEffect, useState, useContext } from "react";
 import { AiFillFileImage } from "react-icons/ai";
 import { Context } from "../../context/Context";
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 import axios from "axios";
 function TravelPins() {
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
@@ -36,7 +38,14 @@ function TravelPins() {
     });
 
   };
-
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/pins/${currentPlaceId}`, {
+        data: { username: user.username },
+      });
+      window.location.replace("/travelPins");
+    } catch (err) { }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPin = {
@@ -120,7 +129,7 @@ function TravelPins() {
                       src={PF + p.photo}
                       alt=""
                     />}
-                    
+
                     <h4 className="place">{p.title}</h4>
                     <label className="pinLabel">Review</label>
                     <p className="desc">{p.desc}</p>
@@ -139,6 +148,14 @@ function TravelPins() {
                         {new Date(p.createdAt).toDateString()}
                       </span>
                     </div>
+                    {user.username == p.username &&
+                      <div className="btnChange">
+                        <button className="btn Edit">Edit</button>
+                        <button onClick={handleDelete} className="btn Delete">Delete</button>
+                      </div>
+
+                    }
+
                   </div>
                 </Popup>
               )}

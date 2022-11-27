@@ -1,4 +1,6 @@
 import "./writeblog.scss";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
@@ -10,13 +12,13 @@ function WriteBlog() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { admin } = useContext(Context);
-
+  const [value, setValue] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
       nameAdmin: admin.nameAdmin,
       title,
-      desc,
+      desc: value,
     };
     if (file) {
       const data = new FormData();
@@ -62,12 +64,7 @@ function WriteBlog() {
               />
             </div>
             <div className="writeFormGroup">
-              <textarea
-                placeholder="Tell your story..."
-                type="text"
-                className="writeInput writeText"
-                onChange={e => setDesc(e.target.value)}
-              ></textarea>
+              <ReactQuill theme="snow" value={value} onChange={setValue} />
             </div>
             <button className="writeSubmit" type="submit">
               Publish

@@ -1,5 +1,6 @@
 import "./post.scss"
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 function Post({ post }) {
   const PF = "http://localhost:8800/images/";
   return (
@@ -11,7 +12,7 @@ function Post({ post }) {
       />}
       <div className="postInfo">
         <div className="postCats">
-          
+
           {
             post.categories.map((c) => (
               <span className="postCat">
@@ -23,12 +24,15 @@ function Post({ post }) {
           }
         </div>
         <span className="postTitle">{post.title}</span>
-       
+
         <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
       </div>
-      <p className="postDesc">
-        {post.desc}
-      </p>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(post.desc),
+        }}
+        className="postDesc"></p>
+
     </div>
   )
 }

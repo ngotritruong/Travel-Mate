@@ -1,9 +1,9 @@
 import React from 'react'
 import './singleTip.css'
-import { BsTrash, BsPencilSquare } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 import axios from "axios";
 function SingleTip() {
   const Location = useLocation();
@@ -49,9 +49,11 @@ function SingleTip() {
           </span>
           <span>1 day ago</span>
         </div>
-        <p className="singlePostDesc">
-          {tips.desc}
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(tips.desc),
+          }}
+          className="singlePostDesc"></p>
       </div>
     </div>
   )

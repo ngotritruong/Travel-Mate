@@ -1,9 +1,9 @@
 import "./mapBoxAv.css";
 import * as React from "react";
-import {useRef, useState } from "react";
+import { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Map, { Popup, Marker } from "react-map-gl";
-import { BsCheckLg } from "react-icons/bs";
+
 
 function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
   const [currentPlaceId, setCurrentPlaceId] = useState(false);

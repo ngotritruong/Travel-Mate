@@ -8,6 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import axios from "axios";
+import DOMPurify from "dompurify";
 function SingleTips() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
@@ -100,7 +101,10 @@ function SingleTips() {
                 onChange={(e) => setDesc(e.target.value)}
               />
             ) : (
-              <p className="singleTipsDesc">{desc}</p>
+              <p className="singleTipsDesc"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(desc),
+                }}></p>
             )}
             {updateMode && (
               <button className="singleTipsButton" onClick={handleUpdate}>

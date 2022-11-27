@@ -5,18 +5,21 @@ import axios from "axios";
 import { Context } from "../../context/Context";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useContext, useState } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 function WriteTips() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { admin } = useContext(Context);
 
+  const [value, setValue] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newTips = {
       nameAdmin: admin.nameAdmin,
       title,
-      desc,
+      desc: value,
     };
     if (file) {
       const data = new FormData();
@@ -62,12 +65,7 @@ function WriteTips() {
               />
             </div>
             <div className="writeFormGroup">
-              <textarea
-                placeholder="Tell your story..."
-                type="text"
-                className="writeInput writeText"
-                onChange={e => setDesc(e.target.value)}
-              ></textarea>
+              <ReactQuill theme="snow" value={value} onChange={setValue} />
             </div>
             <button className="writeSubmit" type="submit">
               Publish

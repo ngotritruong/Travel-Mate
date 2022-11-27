@@ -136,3 +136,20 @@ textarea {
   border-radius: 5px;
   color: white;
 }
+.btnChange{
+  display: flex;
+  margin-top: 20px;
+}
+.btn{
+  width: 120px;
+  margin-right: 10px;
+  border: none;
+  padding: 3px;
+  border-radius: 5px;
+}
+.Edit{
+  background-color: #148bed;
+}
+.Delete{
+  background-color: tomato;
+}

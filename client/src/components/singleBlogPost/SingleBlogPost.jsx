@@ -1,9 +1,9 @@
 import "./singleBlogPost.css";
-import { BsTrash, BsPencilSquare } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DOMPurify from "dompurify";
 function SingleBlogPost() {
   const Location = useLocation();
   const PF = "http://localhost:8800/images/";
@@ -21,9 +21,9 @@ function SingleBlogPost() {
       <Link to="/travelBlog">
         <button className="sgpButton">back</button>
       </Link>
-      
+
       <div className="singlePostWrapper">
-        
+
         {post.photo && (
           <img
             src={PF + post.photo}
@@ -34,10 +34,6 @@ function SingleBlogPost() {
 
         <h1 className="singlePostTitle">
           <p>{post.title}</p>
-          <div className="singlePostEdit">
-            <BsPencilSquare className="singlePostIcon far-delete" />
-            <BsTrash className="singlePostIcon far-edit" />
-          </div>
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
@@ -45,9 +41,11 @@ function SingleBlogPost() {
           </span>
           <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>
-        <p className="singlePostDesc">
-          {post.desc}
-        </p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.desc),
+          }}
+          className="singlePostDesc"></p>
       </div>
     </div>
   );

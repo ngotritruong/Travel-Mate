@@ -1,5 +1,6 @@
 import "./tip.scss"
 import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 function Tip({ tip }) {
   const PF = "http://localhost:8800/images/";
   return (
@@ -10,14 +11,16 @@ function Tip({ tip }) {
         alt=""
       />}
       <div className="tipInfo">
-        
+
         <span className="tipTitle">{tip.title}</span>
-       
+
         <span className="tipDate">{new Date(tip.createdAt).toDateString()}</span>
       </div>
-      <p className="tipDesc">
-        {tip.desc}
-      </p>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(tip.desc),
+        }}
+        className="tipDesc"></p>
     </div>
   )
 }

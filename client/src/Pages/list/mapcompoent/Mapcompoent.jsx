@@ -2,10 +2,10 @@ import './Mapcompoent.css'
 
 import React, { useEffect, useRef, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Map, { Marker, Popup } from "react-map-gl";
+import Map, { Marker} from "react-map-gl";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import "mapbox-gl/dist/mapbox-gl.css";
 import { HiLocationMarker } from "react-icons/hi";
 const URL = "https://trueway-geocoding.p.rapidapi.com/Geocode";
 
@@ -15,7 +15,7 @@ const MapComponent = () => {
     const [destination, setDestination] = useState(location.state.destination);
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
-
+    const mapContainerRef = useRef(null);
     useEffect(() => {
         const options = {
             params: { address: destination },
@@ -42,13 +42,13 @@ const MapComponent = () => {
     const [viewState, setViewState] = useState({
         longitude: 108.277199,
         latitude: 14.058324,
-        zoom: 7
+        zoom: 4
     });
     const handleBound = () => {
         setViewState({
             longitude: lng,
             latitude: lat,
-            zoom: 10
+            zoom: 7
         })
     }
    
@@ -57,7 +57,7 @@ const MapComponent = () => {
             <button onClick={handleBound} className= "btn_handelBound">Find {destination} location on the map</button>
             <Map
                 {...viewState}
-                mapboxAccessToken={process.env.REACT_APP_MAPBOX}
+                mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
                 style={{ width: "100%", height: "600px" }}
                 onMove={(evt) => setViewState(evt.viewState)}
                 mapStyle="mapbox://styles/ngotritruong/cla7nlkbd000c14ntkzd00xu4"
