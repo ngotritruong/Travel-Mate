@@ -28,7 +28,7 @@ const Overview = () => {
             setInfo(data);
         };
 
-        if (destination !== "") {
+        if (destination !== "") { 
             getPlaceDetail();
         }
     }, [destination]);

@@ -60,7 +60,7 @@ const MapComponent = () => {
                 mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
                 style={{ width: "100%", height: "600px" }}
                 onMove={(evt) => setViewState(evt.viewState)}
-                mapStyle="mapbox://styles/ngotritruong/cla7nlkbd000c14ntkzd00xu4"
+                mapStyle="mapbox://styles/mapbox/streets-v12"
             >
                 <Marker longitude={lng} latitude={lat} offsetLeft={-20}
                     offsetTop={-10}

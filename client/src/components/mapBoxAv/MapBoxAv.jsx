@@ -24,7 +24,7 @@ function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
     <div>
       <Map
         {...viewState}
-        mapboxAccessToken={process.env.REACT_APP_MAPBOX}
+        mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
         style={{ width: "100%", height: "90vh" }}
         onMove={(evt) => {
           
@@ -34,7 +34,7 @@ function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
        onViewChange={e=>{
         console.log(e)
        }}
-        mapStyle="mapbox://styles/ngotritruong/cl7m0zpnh000614s4fkvm3252"
+       mapStyle="mapbox://styles/mapbox/streets-v12"
       >
         {placeResult.map((place, i) => (
           <div key={i}>

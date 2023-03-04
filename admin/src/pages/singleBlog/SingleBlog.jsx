@@ -7,6 +7,8 @@ import { useEffect, useState, useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
 import DOMPurify from "dompurify";
 function SingleBlog() {
@@ -34,7 +36,7 @@ function SingleBlog() {
       await axios.delete(`/posts/${post._id}`, {
         data: { nameAdmin: admin.nameAdmin },
       });
-      window.location.replace("/");
+      window.location.replace("/blogposts");
     } catch (err) { }
   };
 
@@ -95,11 +97,7 @@ function SingleBlog() {
               </span>
             </div>
             {updateMode ? (
-              <textarea
-                className="singlePostDescInput"
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-              />
+              <ReactQuill theme="snow" value={desc} onChange={setDesc} />
             ) : (
               <p
                 dangerouslySetInnerHTML={{

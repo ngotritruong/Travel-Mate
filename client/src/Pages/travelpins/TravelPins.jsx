@@ -21,9 +21,9 @@ function TravelPins() {
   const PF = "http://localhost:8800/images/";
 
   const [viewState, setViewState] = useState({
-    longitude: -100,
-    latitude: 40,
-    zoom: 3.5,
+    longitude: 78.962883,
+    latitude: 20.593683,
+    zoom: 2,
   });
 
   const handleMarkerClick = (id) => {
@@ -91,10 +91,10 @@ function TravelPins() {
       <div className="pinContainer">
         <Map
           {...viewState}
-          mapboxAccessToken={process.env.REACT_APP_MAPBOX}
+          mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
           style={{ width: "100%", height: "100%" }}
           onMove={(evt) => setViewState(evt.viewState)}
-          mapStyle="mapbox://styles/ngotritruong/cla7nlkbd000c14ntkzd00xu4"
+          mapStyle="mapbox://styles/mapbox/streets-v12"
           onDblClick={handleAddClick}
         >
           {pins.map((p) => (

@@ -6,7 +6,9 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { Context } from "../../context/Context";
+import { Context } from "../../context/Context";  
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import axios from "axios";
 import DOMPurify from "dompurify";
 function SingleTips() {
@@ -34,7 +36,7 @@ function SingleTips() {
       await axios.delete(`/tips/${tips._id}`, {
         data: { nameAdmin: admin.nameAdmin },
       });
-      window.location.replace("/");
+      window.location.replace("/travelTips");
     } catch (err) { }
   };
 
@@ -95,11 +97,9 @@ function SingleTips() {
               </span>
             </div>
             {updateMode ? (
-              <textarea
-                className="singleTipsDescInput"
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-              />
+              
+              <ReactQuill theme="snow" value={desc} onChange={setDesc} />
+              
             ) : (
               <p className="singleTipsDesc"
                 dangerouslySetInnerHTML={{

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./new.css";
 import { useLocation } from "react-router-dom";
-
+import baoChi from "../../../Image/bao-chi.jpg"
 const URL = "https://bing-news-search1.p.rapidapi.com/news/search";
 
 const New = () => {
@@ -35,6 +35,7 @@ const New = () => {
             getNews();
         }
     }, [destination]);
+    console.log(news)
     return (
         <>
             {news && (
@@ -44,7 +45,7 @@ const New = () => {
                         <div className="newCard" key={i}>
                             <div className="newImgs">
                                 <img
-                                    src={n.image ? n.image.thumbnail.contentUrl : ""}
+                                    src={n.image ? n.image.thumbnail.contentUrl : baoChi}
                                     alt="news"
                                     className="newImg"
                                 />

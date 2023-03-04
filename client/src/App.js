@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import Home from "./Pages/home/Home";
 import List from "./Pages/list/List";
@@ -14,6 +14,7 @@ import TravelTips from "./Pages/traveltips/TravelTips";
 import { Context } from "./context/Context";
 import { useContext } from "react";
 import SingleTip from "./Pages/singelTip/SingleTip";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   const {user} = useContext(Context);
   return (

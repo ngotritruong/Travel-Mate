@@ -9,6 +9,7 @@ export default function Login() {
   const passwordRef = useRef();
   const { user, dispatch, isFetching } = useContext(Context);
   const [error, setError] = useState(false);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
@@ -21,7 +22,7 @@ export default function Login() {
     } catch (err) {
       setError(true);
       dispatch({ type: "LOGIN_FAILURE" });
-
+      
     }
   };
   return (
@@ -73,3 +74,4 @@ export default function Login() {
     </div>
   );
 }
+
