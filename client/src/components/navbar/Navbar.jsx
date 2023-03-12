@@ -1,9 +1,9 @@
 import "./navbar.css";
-import logo from "../../Image/Logomate.png";
+import logo from "../../Images/Logomate.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
-import userImage from "../../Image/tempa.webp"
+import userImage from "../../Images/tempa.webp"
 function Navbar() {
   const { user} = useContext(Context);
   const PF = "http://localhost:8800/images/"

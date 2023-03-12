@@ -2,7 +2,7 @@ import "./profileSidebar.css";
 import { Link } from "react-router-dom";
 import { useContext} from "react";
 import { Context } from "../../context/Context";
-import userImage from "../../Image/tempa.webp"
+import userImage from "../../Images/tempa.webp"
 function ProfileSidebar() {
   
   const { user, dispatch } = useContext(Context);

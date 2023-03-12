@@ -1,6 +1,6 @@
 import "./blogHome.css";
 import React from "react";
-import BlogImg from "../../Image/travelBlogHeader.jpg";
+import BlogImg from "../../Images/travelBlogHeader.jpg";
 function BlogHome() {
   return (
     <div className="headerBlog">

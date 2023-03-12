@@ -20,7 +20,8 @@ export default function Login() {
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
-      setError(true);
+      console.log(err.request.response)
+      setError(err.request.response);
       dispatch({ type: "LOGIN_FAILURE" });
       
     }
@@ -44,7 +45,7 @@ export default function Login() {
                 <input type="password" id="passwordForm" ref={passwordRef} />
               </div>
               
-              {error && <span className="error">Something went wrong!</span>}
+              {error && <span className="error">{error}</span>}
               <button type="submit" className="loginButton" disabled={isFetching}>Sign In</button>
               <button className="registerButton">
                 <Link className="link" to="/register">

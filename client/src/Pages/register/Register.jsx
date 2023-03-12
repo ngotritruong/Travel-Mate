@@ -20,7 +20,7 @@ export default function Register() {
       });
       res.data && window.location.replace("/login");
     } catch (err) {
-      setError(true);
+      setError(err.request.response);
     }
   };
   return (
@@ -45,7 +45,7 @@ export default function Register() {
                 <label htmlFor="passwordForm">Enter Password</label>
                 <input type="password" id="passwordForm" onChange={(e) => setPassword(e.target.value)} />
               </div>
-              {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
+              {error && <span style={{color:"red", marginTop:"10px"}}>{error}</span>}
               <button type="submit" className="registerButton">Register</button>
               <button className="loginButton">
                 <Link className="link" to="/login">

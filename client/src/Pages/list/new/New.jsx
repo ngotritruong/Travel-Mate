@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./new.css";
 import { useLocation } from "react-router-dom";
-import baoChi from "../../../Image/bao-chi.jpg"
+import baoChi from "../../../Images/bao-chi.jpg"
 const URL = "https://bing-news-search1.p.rapidapi.com/news/search";
 
 const New = () => {

@@ -1,6 +1,6 @@
 
 import Header from "../../components/header/Header";
-import heroHeader from "../../Image/imgHomeBackground.jpg";
+import heroHeader from "../../Images/imgHomeBackground.jpg";
 import "./home.css";
 import Featured from "../../components/featured/Featured";
 import EmailFeedBack from "../../components/emailFeedback/EmailFeedBack";

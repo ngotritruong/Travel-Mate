@@ -1,6 +1,6 @@
 import React from 'react'
 import './tipHome.css'
-import Traveltipimg from '../../Image/traveltipimg.jpg'
+import Traveltipimg from '../../Images/traveltipimg.jpg'
 function TipHome() {
   return (
     <div className="headerTip">

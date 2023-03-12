@@ -7,7 +7,7 @@ import {
   BsTwitter,
 } from "react-icons/bs";
 
-import img from "../../Image/Logomate.png";
+import img from "../../Images/Logomate.png";
 function Footer() {
   return (
     <div className="footer">
