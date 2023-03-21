@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
-import loginImg from "../../Image/loginimage.svg"
+import loginImg from "../../Images/loginimage.svg"
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

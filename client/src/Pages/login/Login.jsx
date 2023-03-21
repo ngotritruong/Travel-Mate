@@ -3,7 +3,8 @@ import "./login.css";
 import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import loginImg from "../../Image/loginimage.svg"
+import loginImg from "../../Images/loginimage.svg"
+
 export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
