@@ -56,10 +56,11 @@ router.post("/registerAd", async (req, res) => {
 router.post("/loginAd", async (req, res) => {
   try {
     const admin = await Admin.findOne({ email: req.body.email });
-    !admin && res.status(400).json("Wrong credentials!");
-
+    if(!admin){
+      return res.status(400).json("Wrong credentials!");
+    }
     const validated = await bcrypt.compare(req.body.password, admin.password);
-    !validated && res.status(400).json("Wrong credentials!")
+    if(!validated) { return res.status(400).json("Wrong credentials!")}
     const { password, ...others } = admin._doc;
     res.status(200).json(others);
   } catch (err) {
