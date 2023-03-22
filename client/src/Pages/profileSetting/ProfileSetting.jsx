@@ -75,31 +75,31 @@ function ProfileSetting() {
               <label>Username</label>
               <input
                 type="text"
-                placeholder={user.username}
+                defaultValue={user.username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <label>Email</label>
               <input
                 type="email"
-                placeholder={user.email}
+                defaultValue={user.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label>Phone: </label>
               <input
                 type="text"
-                placeholder={user.phone}
+                defaultValue={user.phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
               <label>Country</label>
               <input
                 type="text"
-                placeholder={user.country}
+                defaultValue={user.country}
                 onChange={(e) => setCountry(e.target.value)}
               />
               <label>Bio:</label>
               <input
                 type="text"
-                placeholder={user.bio}
+                defaultValue={user.bio}
                 onChange={(e) => setBio(e.target.value)}
               />
               <label>Password</label>
