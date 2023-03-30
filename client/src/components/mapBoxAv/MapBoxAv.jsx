@@ -2,10 +2,11 @@ import "./mapBoxAv.css";
 import * as React from "react";
 import { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaSearchLocation } from "react-icons/fa";
 import Map, { Popup, Marker } from "react-map-gl";
 
 
-function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
+function MapBoxAv({ places }) {
   const [currentPlaceId, setCurrentPlaceId] = useState(false);
   const placeResult = places?.filter((place) => Number(place.latitude));
   const [viewState, setViewState] = useState({
@@ -18,23 +19,25 @@ function MapBoxAv({ setCoordinates, setBounds, coordinates, places }) {
   const handleMarkerClick = (id) => {
     setCurrentPlaceId(id);
   };
-  
-
   return (
-    <div>
+    <div className="mapBoxAv">
+      <div className="mapBoxAvInput">
+        <input type="text"  />
+        <FaSearchLocation className="inputIcon"/>
+      </div>
       <Map
         {...viewState}
-        mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
+        mapboxAccessToken={process.env.REACT_APP_MAP_KEY}
         style={{ width: "100%", height: "90vh" }}
         onMove={(evt) => {
-          
+
           setViewState(evt.viewState)
         }
         }
-       onViewChange={e=>{
-        console.log(e)
-       }}
-       mapStyle="mapbox://styles/mapbox/streets-v12"
+        onViewChange={e => {
+          console.log(e)
+        }}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
       >
         {placeResult.map((place, i) => (
           <div key={i}>

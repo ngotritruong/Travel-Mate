@@ -55,7 +55,7 @@ export default function Login() {
               </button>
             </div>
 
-            <div class="login-form-footer">
+            <div className="login-form-footer">
               <a href="#">
                 <img width="30"
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png" />
@@ -69,7 +69,7 @@ export default function Login() {
             </div>
           </form>
         </div>
-        <div class="login-right">
+        <div className="login-right">
           <img src={loginImg} alt="image" />
         </div>
       </div>

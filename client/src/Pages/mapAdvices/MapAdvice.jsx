@@ -9,15 +9,12 @@ import Footer from "../../components/footer/Footer";
 import EmailFeedBack from "../../components/emailFeedback/EmailFeedBack";
 function MapAdvice() {
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({});
-  const [bounds, setBounds] = useState(null);
-
   useEffect(() => {
     getPlacesData().then((data) => {
       setPlaces(data);
       console.log(data);
     });
-  }, [coordinates, bounds]);
+  }, []);
   
   return (
     <div className="App">
@@ -28,9 +25,6 @@ function MapAdvice() {
           </div>
           <div className="Map">
             <MapBoxAv
-              setCoordinates={setCoordinates}
-              setBounds={setBounds}
-              coordinates={coordinates}
               places={places}
             />
           </div>

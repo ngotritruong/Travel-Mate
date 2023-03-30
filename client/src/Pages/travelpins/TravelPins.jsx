@@ -1,6 +1,6 @@
 import "./travelPins.css";
 import Map, { Marker, Popup } from "react-map-gl";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaSearchLocation } from "react-icons/fa";
 import { ImStarFull } from "react-icons/im";
 import { useEffect, useState, useContext } from "react";
 import { AiFillFileImage } from "react-icons/ai";
@@ -89,9 +89,13 @@ function TravelPins() {
   return (
     <div className="travelPins">
       <div className="pinContainer">
+        <div className="mapBoxAvInput">
+          <input type="text" />
+          <FaSearchLocation className="inputIcon" />
+        </div>
         <Map
           {...viewState}
-          mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
+          mapboxAccessToken={process.env.REACT_APP_MAP_KEY}
           style={{ width: "100%", height: "100%" }}
           onMove={(evt) => setViewState(evt.viewState)}
           mapStyle="mapbox://styles/mapbox/streets-v12"
