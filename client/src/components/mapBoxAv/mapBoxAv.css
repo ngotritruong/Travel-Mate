@@ -34,5 +34,6 @@
 }
 
 .mapBoxAvInput .inputIcon{
-  color: rgb(25, 146, 227);;
+  color: rgb(25, 146, 227);
+  cursor: pointer;
 }
