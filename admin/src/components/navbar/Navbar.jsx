@@ -50,7 +50,7 @@ function Navbar() {
           </div>
           <div className="navbarItem">
             {admin ? (
-              <Link to="/profilesetting">
+              <Link to="/">
                 <img
                   src={admin.img ? PF + admin.img : "https://images.unsplash.com/photo-1566903697359-6f8ee1c1ab20?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWUlMjBjdXRlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"}
                   alt=""

@@ -1,60 +1,16 @@
 import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import { DeleteUser, GetAllUser, GetUser, UpdateUser } from "../controllers/users.js";
 const router = express.Router();
 //update user
-router.put("/:id", async (req, res) => {
-    if (req.body.userId === req.params.id) {
-      if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
-      }
-      try {
-        const updatedUser = await User.findByIdAndUpdate(
-          req.params.id,
-          {
-            $set: req.body,
-          },
-          { new: true }
-        );
-        res.status(200).json(updatedUser);
-      } catch (err) {
-        res.status(500).json(err);
-      }
-    } else {
-      res.status(401).json("You can update only your account!");
-    }
-  });
+router.put("/:id", UpdateUser);
 
   //delete user
-  router.delete("/:id", async (req, res) => {
-        try {
-          await User.findByIdAndDelete(req.params.id);
-          res.status(200).json("User has been deleted...");
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      } 
-   );
+  router.delete("/:id", DeleteUser);
 
-  router.get("/:id", async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      const { password, ...others } = user._doc;
-      res.status(200).json(others);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  router.get("/", async (req, res) => {
-    
-    try {
-      const users = await User.find();
-      res.status(200).json(users);
-    } catch (err) {
-      next(err);
-    }
-  });
+  router.get("/:id", GetUser);
+  router.get("/", GetAllUser);
 
   
   

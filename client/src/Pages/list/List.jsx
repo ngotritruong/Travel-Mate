@@ -5,7 +5,6 @@ import EmailFeedBack from "../../components/emailFeedback/EmailFeedBack";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Hotel from "./hotel/Hotel";
-import Weather from "./weather/Weather";
 import New from "./new/New";
 import Overview from "./overview/Overview";
 import MapComponent from "./mapcompoent/Mapcompoent";
@@ -79,9 +78,8 @@ function List() {
             <Overview />
           </div>
           <div className="destinationInfo">
-            <div className="weather">
-              <h5 style={{ fontWeight: "700" }}>Weather</h5>
-              <Weather />
+            <div className="mapComponent">
+              <MapComponent />
             </div>
             <div className="hotelContainer">
               <h5 className="hotelH5">
@@ -97,9 +95,6 @@ function List() {
                 )}
               </div>
             </div>
-          </div>
-          <div className="mapComponent">
-            <MapComponent />
           </div>
           <div className="container">
             <New />
