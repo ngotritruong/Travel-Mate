@@ -8,12 +8,16 @@ import categoryRoute from "./routes/categories.js";
 import pinRoute from "./routes/pins.js";
 import adminRoute from "./routes/admin.js";
 import tipRoute from "./routes/tips.js";
+import rooms from "./routes/rooms.js";
 import multer from "multer";
 import path from "path";
+import cors from "cors";
 const app = express();
+
 dotenv.config();
 app.use(express.json());
 const __dirname = path.resolve();
+app.use(cors());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 const connect = async () =>{
     try {
@@ -44,6 +48,7 @@ app.use("/api/posts", postRoute);
 app.use("/api/pins", pinRoute);
 app.use("/api/tips", tipRoute);
 app.use("/api/admins", adminRoute);
+app.use("/api/rooms",rooms);
 app.use("/api/categories", categoryRoute);
 app.listen(8800, ()=>{
     connect();

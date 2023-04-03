@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RoomLists from "./RoomLists";
-
+import axios from "axios";
 import Title from "./Title";
 
-const RoomsContainer = ({ context }) => {
+const RoomsContainer = () => {
+  const [rooms, setRooms] = useState();
+  useEffect(() => {
+    const getPins = async () => {
+      try {
+        const allRooms = await axios.get("/rooms");
+        setRooms(allRooms.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPins();
+  }, []);
 
   return (
     <>
@@ -40,13 +52,8 @@ const RoomsContainer = ({ context }) => {
         </form>
       </section>
       <div className="room-style">
-        <RoomLists />
-        <RoomLists />
-        <RoomLists />
-        <RoomLists />
-        <RoomLists />
-        <RoomLists />
-        <RoomLists />
+        <RoomLists rooms={rooms}/>
+       
       </div>
 
 
