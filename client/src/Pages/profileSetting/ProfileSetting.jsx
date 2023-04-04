@@ -2,14 +2,14 @@ import "./profileSetting.css";
 
 import { BiImageAdd } from "react-icons/bi";
 import ProfileSidebar from "../../components/profileSidebar/ProfileSidebar";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
 function ProfileSetting() {
   const [file, setFile] = useState(null);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const username = useRef();
+  const email = useRef();
   const [phone, setPhone] = useState("");
   const [bio, setBio] = useState("");
   const [country, setCountry] = useState("");
@@ -23,9 +23,8 @@ function ProfileSetting() {
     dispatch({ type: "UPDATE_START" });
     const updatedUser = {
       userId: user._id,
-      username,
-      email,
-      password,
+      username: username.current.value,
+      email: email.current.value,
       phone,
       bio,
       country,
@@ -75,39 +74,34 @@ function ProfileSetting() {
               <label>Username</label>
               <input
                 type="text"
-                placeholder={user.username}
-                onChange={(e) => setUsername(e.target.value)}
+                defaultValue={user.username}
+                ref={username}
               />
               <label>Email</label>
               <input
                 type="email"
-                placeholder={user.email}
-                onChange={(e) => setEmail(e.target.value)}
+                defaultValue={user.email}
+                ref={email}
               />
               <label>Phone: </label>
               <input
                 type="text"
-                placeholder={user.phone}
+                defaultValue={user.phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
               <label>Country</label>
               <input
                 type="text"
-                placeholder={user.country}
+                defaultValue={user.country}
                 onChange={(e) => setCountry(e.target.value)}
               />
               <label>Bio:</label>
               <input
                 type="text"
-                placeholder={user.bio}
+                defaultValue={user.bio}
                 onChange={(e) => setBio(e.target.value)}
               />
-              <label>Password</label>
-              <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+      
               <button className="settingsSubmitButton" type="submit">
                 Update
               </button>

@@ -45,15 +45,8 @@ export default function Login() {
               </div>
               
               {error && <span className="error">Something went wrong!</span>}
-              <button type="submit" className="loginButton" disabled={isFetching}>Sign In</button>
-              <button className="registerButton">
-                <Link className="link" to="/register">
-                  Register
-                </Link>
-              </button>
+              <button type="submit" className="loginButton" disabled={isFetching}>Sign In</button>          
             </div>
-
-            
           </form>
         </div>
         <div className="login-right">

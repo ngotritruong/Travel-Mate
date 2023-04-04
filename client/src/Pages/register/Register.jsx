@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
-import loginImg from "../../Image/loginimage.svg"
+import loginImg from "../../Images/loginimage.svg"
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
-    try {
+    try { 
       const res = await axios.post("/auth/register", {
         username,
         email,
@@ -53,21 +53,9 @@ export default function Register() {
                 </Link>
               </button>
             </div>
-            <div class="login-form-footer">
-              <a href="#">
-                <img width="30"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1365px-Facebook_f_logo_%282019%29.svg.png" />
-                Facebook Login
-              </a>
-              <a href="#">
-                <img width="30"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5q0FP74VV9wbfwP378_7kj7iDomHuKrxkXsxDdUT28V9dlVMNUe-EMzaLwaFhneeuZI&usqp=CAU" />
-                Google Login
-              </a>
-            </div>
           </form>
         </div>
-        <div class="login-right">
+        <div className="login-right">
           <img src={loginImg} alt="image" />
         </div>
       </div>

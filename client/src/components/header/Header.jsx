@@ -43,9 +43,9 @@ function Header({ type }) {
               <span>Home</span>
             </div>
             <div className="headerListItem">
-              <Link to="/mapAdvice">
-                <FontAwesomeIcon icon={faMap} className="headerIcon" />
-                <span>Map Advices</span>
+              <Link to="/booking">
+                <FontAwesomeIcon icon={faBlog} className="headerIcon" />
+                <span>Booking Hotel</span>
               </Link>
             </div>
             <div className="headerListItem">
@@ -57,7 +57,7 @@ function Header({ type }) {
             <div className="headerListItem">
               <Link to="/travelPins">
                 <FaMapMarkedAlt icon={faBed} className="headerIcon" />
-                <span>Destinations</span>
+                <span>Travel Pins</span>
               </Link>
             </div>
             <div className="headerListItem">

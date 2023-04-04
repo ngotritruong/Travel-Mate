@@ -2,87 +2,21 @@
 
 import express from "express";
 import Tips from "../models/tips.js";
+import { AddTip, DeleteTip, GetAllTips, GetTip, UpdateTips } from "../controllers/tips.js";
 
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-    const newTips = new Tips(req.body);
-    try {
-      const savedTips = await newTips.save();
-      res.status(200).json(savedTips);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.post("/", AddTip);
 
-  router.put("/:id", async (req, res) => {
-    try {
-      const tips = await Tips.findById(req.params.id);
-      if (tips.nameAdmin === req.body.nameAdmin) {
-        try {
-          const updatedTips = await Tips.findByIdAndUpdate(
-            req.params.id,
-            {
-              $set: req.body,
-            },
-            { new: true }
-          );
-          res.status(200).json(updatedTips);
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      } else {
-        res.status(401).json("You can update only your Tips!");
-      }
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  router.put("/:id", UpdateTips);
 
   //DELETE 
-router.delete("/:id", async (req, res) => {
-    try {
-      const tips = await Tips.findById(req.params.id);
-      if (tips.nameAdmin === req.body.nameAdmin) {
-        try {
-          await tips.delete();
-          res.status(200).json("Tips has been deleted...");
-        } catch (err) {
-          res.status(500).json(err);
-        }
-      } else {
-        res.status(401).json("You can delete only your Típ!");
-      }
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.delete("/:id", DeleteTip);
 
   //GET TIPS
-router.get("/:id", async (req, res) => {
-    try {
-      const Tip = await Tips.findById(req.params.id);
-      res.status(200).json(Tip);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.get("/:id", GetTip);
 //GET ALL Tips
-router.get("/", async (req, res) => {
-    const nameAdmin = req.query.admin;
-    const catName = req.query.cat;
-    try {
-      let Tip;
-      if (nameAdmin) {
-        Tip = await Tips.find({ nameAdmin });
-      } else {
-        Tip = await Tips.find();
-      }
-      res.status(200).json(Tip);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });  
+router.get("/", GetAllTips);  
 
 export default router;

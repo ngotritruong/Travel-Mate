@@ -24,7 +24,7 @@
 
 }
 .hotelContainer {
-  flex: 4;
+  flex: 2;
   background-color: #d1dde8;
   padding: 10px;
   border-radius: 5px;
@@ -40,4 +40,7 @@
 .container{
   width: 100%;
   display: flex;
+}
+.mapComponent{
+  flex: 2;
 }

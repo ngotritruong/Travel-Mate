@@ -1,13 +1,16 @@
 import "./travelPins.css";
 import Map, { Marker, Popup } from "react-map-gl";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaSearchLocation } from "react-icons/fa";
 import { ImStarFull } from "react-icons/im";
 import { useEffect, useState, useContext } from "react";
 import { AiFillFileImage } from "react-icons/ai";
 import { Context } from "../../context/Context";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+
+
 import axios from "axios";
+const URL = "https://trueway-geocoding.p.rapidapi.com/Geocode";
 function TravelPins() {
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [pins, setPins] = useState([]);
@@ -17,6 +20,11 @@ function TravelPins() {
   const [desc, setDesc] = useState(null);
   const [star, setStar] = useState(0);
   const [file, setFile] = useState(null);
+
+  const [destination, setDestination] = useState("Viet Nam");
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+
 
   const PF = "http://localhost:8800/images/";
 
@@ -86,12 +94,52 @@ function TravelPins() {
     };
     getPins();
   }, []);
+  // search on travel pin :)))
+
+  
+  useEffect(() => {
+    const options = {
+      params: { address: destination },
+      headers: {
+        "X-RapidAPI-Key": "02830c346emsh2606c2508f81c59p1b7059jsn5006c032fb80",
+        "X-RapidAPI-Host": "trueway-geocoding.p.rapidapi.com",
+      },
+    };
+
+    const getCoord = async () => {
+      try {
+        const { data } = await axios.get(URL, options);
+        setLat(data.results[0].location.lat);
+        setLng(data.results[0].location.lng);
+        console.log("hello world");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (destination !== "") {
+      getCoord();
+    }
+  }, [destination, lat, lng]);
+
+  const handleBound = () => {
+    setViewState({
+        longitude: lng,
+        latitude: lat,
+        zoom: 10
+    })
+}
+  //
   return (
     <div className="travelPins">
       <div className="pinContainer">
+        <div className="mapBoxAvInput">
+          <input type="text" onBlur={e => setDestination(e.target.value)}/>
+          <FaSearchLocation className="inputIcon" onClick={handleBound}/>
+        </div>
         <Map
           {...viewState}
-          mapboxAccessToken= {process.env.REACT_APP_MAP_KEY}
+          mapboxAccessToken={process.env.REACT_APP_MAP_KEY}
           style={{ width: "100%", height: "100%" }}
           onMove={(evt) => setViewState(evt.viewState)}
           mapStyle="mapbox://styles/mapbox/streets-v12"
@@ -186,7 +234,7 @@ function TravelPins() {
                 anchor="left"
               >
                 {file && (
-                  <img className="pinImg" src={URL.createObjectURL(file)} alt="" />
+                  <img className="pinImg" src={window.URL.createObjectURL(file)} alt="" />
                 )}
                 <form onSubmit={handleSubmit} className="formPopup">
                   <div className="pinFormGroup">

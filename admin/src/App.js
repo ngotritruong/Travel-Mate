@@ -7,7 +7,6 @@ import List from "./pages/list/List";
 import WriteBlog from "./pages/writeblog/WriteBlog";
 import BlogPosts from "./pages/blogposts/BlogPosts";
 import SingleBlog from "./pages/singleBlog/SingleBlog";
-import Register from "./pages/register/Register";
 import {userColumns} from "./datatablesource";
 import { useContext } from "react";
 import { Context } from "./context/Context";
@@ -23,7 +22,6 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="/login" element={admin ? <Home /> : <Login />} />
-            <Route path="/register" element={<Register/>} />
             <Route path="/users" >
               <Route index element={admin ? <List columns={userColumns}/> : <Login />} />            
             </Route>
