@@ -1,5 +1,5 @@
-import staffImage from './images/employee.png';
-import userImage from './images/user.png';
+import staffImage from '../src/Images/tempa.webp';
+
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -9,7 +9,7 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
+          <img className="cellImg" src={staffImage} alt="avatar" />
           {params.row.username}
         </div>
       );

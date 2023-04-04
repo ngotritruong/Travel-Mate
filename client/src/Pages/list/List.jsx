@@ -24,7 +24,7 @@ function List() {
     const options = {
       params: { address: destination },
       headers: {
-        "X-RapidAPI-Key": "02830c346emsh2606c2508f81c59p1b7059jsn5006c032fb80",
+        "X-RapidAPI-Key": "6f7cf476ebmsh2d8dcb414502f09p1e9588jsn3d39fca78750",
         "X-RapidAPI-Host": "trueway-geocoding.p.rapidapi.com",
       },
     };
@@ -50,7 +50,7 @@ function List() {
         longitude: lng,
       },
       headers: {
-        "X-RapidAPI-Key": "d41d1d81a3mshf2f70d0f87aa235p15df37jsn234689ca5266",
+        "X-RapidAPI-Key": "6f7cf476ebmsh2d8dcb414502f09p1e9588jsn3d39fca78750",
         "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
       },
     };

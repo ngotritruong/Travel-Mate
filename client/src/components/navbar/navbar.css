@@ -38,3 +38,15 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.navOrder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navOrderIcon{
+  font-size: 20px;
+  color: #148bed;
+  margin-right: 25px;
+}
