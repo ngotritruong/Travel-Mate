@@ -4,6 +4,8 @@ import User from "../models/User.js";
 import Admin from "../models/admin.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {registerMSQL} from "../lib/registerMSQL.js"
+import {loginMysql} from "../lib/loginMysql.js"
 //User
 export const Resgister = async (req, res) => {
   try {
@@ -14,6 +16,7 @@ export const Resgister = async (req, res) => {
       email: req.body.email,
       password: hashedPass,
     });
+    await registerMSQL(req.body)
     const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {
@@ -34,11 +37,13 @@ export const Login = async (req, res) => {
       { id: user._id },
       process.env.JWT
     );
-    const { password, ...others } = user._doc;
+    const userDt = await loginMysql(req.body)
+    const { password, ...others} = user._doc;
     res
     .cookie("access_token", token, {
       httpOnly: true,
     })
+    .cookie("iduser", userDt)
     .status(200)
     .json(others);
   } catch (err) {

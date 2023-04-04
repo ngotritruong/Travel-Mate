@@ -99,8 +99,10 @@ function List() {
           <div className="container">
             <New />
           </div>
-          <EmailFeedBack />
-          <Footer />
+          <div>
+            <EmailFeedBack />
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

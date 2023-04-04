@@ -10,6 +10,7 @@ export default function Login() {
   const passwordRef = useRef();
   const { user, dispatch, isFetching } = useContext(Context);
   const [error, setError] = useState(false);
+  const [idKh, setIdKh] = useState();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function Login() {
         email: userRef.current.value,
         password: passwordRef.current.value,
       });
+     
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
       console.log(err.request.response)

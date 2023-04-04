@@ -15,7 +15,13 @@ const RoomLists = ({ rooms }) => {
                   <h6>{room.don_gia} VND</h6>
                   <p>per night</p>
                 </div>
-                <Link to={`/singleroom/`} className="btn-primary room-link">
+                <Link to={`/singleroom/`} state={{
+                  id: room.id,
+                  gia: room.don_gia,
+                  songuoi: room.so_nguoi,
+                  sophong: room.so_phong,
+                  tenLp: room.ten_lp,
+                }} className="btn-primary room-link">
                   Features
                 </Link>
               </div>

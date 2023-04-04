@@ -8,4 +8,3 @@ export const GetRooms = async (req, res) => {
     }
   };
 
- 

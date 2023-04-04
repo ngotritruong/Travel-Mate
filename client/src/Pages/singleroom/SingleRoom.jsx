@@ -1,19 +1,72 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import defaultBcg from "../../Images/room-1.jpeg";
-
+import { useCookies } from 'react-cookie';
 import Banner from "../../components/Banner";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import StyledHero from "../../components/StyledHero";
 import image1 from "../../Images/room-12.jpeg";
 import image2 from "../../Images/details-2.jpeg";
 import image3 from "../../Images/details-3.jpeg";
+import moment from "moment";
 import EmailFeedBack from "../../components/emailFeedback/EmailFeedBack";
 import Footer from "../../components/footer/Footer";
+import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
+import { Context } from "../../context/Context";
+import axios from "axios";
 function SingleRoom() {
+  let { state } = useLocation();
+  const [cookies, setCookie] = useCookies(['iduser']);
+  const [error, setError] = useState();
+  console.log(cookies.iduser)
+  console.log(state.id)
+  const { user, dispatch } = useContext(Context);
+  const [activeBt, setActiveBt] = useState(true);
+  console.log(activeBt)
+  const [valueDate, setValueDate] = useState([new Date(), new Date()]);
+  const handleInputChange = status => {
+    //console.log(status);
+    setValueDate(status);
+  };
+  const closeCalender = () => {
+      debugger;
+      console.log(
+          "StartDate:" +
+          moment(valueDate[0]).format("YYYY-MM-DD hh:mm:ss") +
+          "           EndDate:" +
+          moment(valueDate[1]).format("YYYY-MM-DD hh:mm:ss")
+      );
+  };
+
   return (
-          <>
+
+          <div className="singgleRoom">
+            {activeBt && <div className="toglebt">
+              <button className="toglebtBtnX" onClick={()=>setActiveBt(false)}>X</button>
+             
+              <form className="bookFormChose">
+                <h2 style={{textAlign: "center", margin: "20px"}}>Nhập thông tin đặt phòng</h2>
+                <div className="valueIp">
+                      <DateTimeRangePicker
+                        onChange={handleInputChange}
+                        value={valueDate}
+                        disableClock={true}
+                        disableCalendar={false}
+                        format={"d-MM-yyyy HH:mm"}
+                        minDate={new Date()}
+                        onCalendarClose={closeCalender}
+                        id="dateTimePicker"
+                        />
+                  </div>
+                  <h4 className="valueIp">Customer information for booking</h4>
+                  <p className="valueIp"><b>Name:</b> {user.username}</p>
+                  <p className="valueIp"><b>Phone number:</b> {user.phone}</p>
+                  <p className="valueIp"><b>Email:</b> {user.email}</p>
+                </form>
+                <button className="btn-primary btn_submit kh" >Booking now</button>
+              </div>
+            }
             <StyledHero img={image1}>
-              <Banner title="Phong Cho Thue">
+              <Banner title="Room for rent">
                 <Link to="/rooms" className="btn-primary">
                   Back to Rooms
                 </Link>
@@ -29,22 +82,26 @@ function SingleRoom() {
                 <article className="desc">
                   <h3>Details</h3>
                   <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi alias explicabo ex magni nesciunt. Magnam voluptatum praesentium vero neque maxime?.</p>
-                  <button className="btn-primary btn_submit">Đặt phòng ngay</button>
+                  {/* <Link to=""> */}
+                    <button className="btn-primary btn_submit" onClick={()=>setActiveBt(true)}>BOOKING NOW</button>
+                  {/* </Link> */}
+                  
                 </article>
                 <article className="info">
                   <h3>Info Room</h3>
-                  <span>Price : $1000</span>
-                  <span>Size : $100 Sqft</span>
-                  <span> Max Capacity : 1 </span>
-                  <span> "pets allowed" : "no pets allowed"</span>
-                  <span> free breakfast included </span>
-                </article>
-               
+                  <span>Price : {state.gia}</span>
+                  <span>Room number : {state.sophong}</span>
+                  <span> Max Capacity : {state.songuoi} </span>
+                  <span> Name room : {state.tenLp} </span>
+                  <span> "Pets allowed" : "no pets allowed"</span>
+                  <span> No free breakfast included </span>
+                  <span> Phone Number: 07658484474</span>
+                </article>  
               </div>
             </section>
             <EmailFeedBack />
             <Footer />
-          </>
+          </div>
         );
 }
 

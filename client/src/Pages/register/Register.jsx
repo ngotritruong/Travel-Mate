@@ -12,7 +12,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
-    try {
+    try { 
       const res = await axios.post("/auth/register", {
         username,
         email,

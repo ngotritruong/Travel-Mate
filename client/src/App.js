@@ -18,6 +18,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import BookingHotel from "./Pages/bookinghotel/BookingHotel";
 import Rooms from "./Pages/Room/Rooms";
 import SingleRoom from "./Pages/singleroom/SingleRoom";
+import ListOrder from "./Pages/listOrder/ListOrder";
 function App() {
   const {user} = useContext(Context);
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={user ? <Home /> : <Login />} />
           <Route path="/register" element = {user ? <Home /> : <Register />} />
           <Route path="/places" element={<List />} />
+          <Route path="/order" element={<ListOrder />} />
           <Route path="/travelBlog" element={<TravelBlog />} />
           <Route path="/booking" element={<BookingHotel />} />
           <Route path="/rooms" element={<Rooms />} />
