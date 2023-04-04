@@ -35,7 +35,6 @@ const New = () => {
             getNews();
         }
     }, [destination]);
-    console.log(news)
     return (
         <>
             {news && (

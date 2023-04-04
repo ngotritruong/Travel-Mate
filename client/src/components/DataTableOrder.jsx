@@ -4,7 +4,7 @@ import { userColumns, userRows } from "../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Datatable = () => {
+const DataTableOrder = () => {
   const [data, setData] = useState(userRows);
 
   const handleDelete = (id) => {
@@ -35,12 +35,6 @@ const Datatable = () => {
   ];
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div>
       <DataGrid
         className="datagrid"
         rows={data}
@@ -53,4 +47,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default DataTableOrder;
