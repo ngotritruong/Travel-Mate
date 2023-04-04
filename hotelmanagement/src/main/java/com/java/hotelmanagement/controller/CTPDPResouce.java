@@ -44,11 +44,6 @@ public class CTPDPResouce {
 		return new ResponseEntity<>(newCTPDP, HttpStatus.CREATED);
 	}
 	
-//	@PutMapping("/update")
-//	public ResponseEntity<?> updateCTPDP(@RequestBody CTPDP ctpdp) {
-//		int updateCTPDP = ctpdpService.updateCTPDP(ctpdp);
-//		return new ResponseEntity<>(updateCTPDP, HttpStatus.OK);
-//	}
 	
 	@DeleteMapping("/delete/{id_pdp}/{id_p}")
 	public ResponseEntity<?> deleteCTPDPById(@PathVariable("id_pdp") Long id_pdp,

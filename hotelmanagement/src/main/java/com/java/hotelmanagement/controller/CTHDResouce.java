@@ -48,11 +48,6 @@ public class CTHDResouce {
 		return new ResponseEntity<>(newCTHD, HttpStatus.CREATED);
 	}
 	
-//	@PutMapping("/update")
-//	public ResponseEntity<?> updateCTHD(@RequestBody CTHD cthd) {
-//		int updateCTHD = cthdService.updateCTHD(cthd);
-//		return new ResponseEntity<>(updateCTHD, HttpStatus.OK);
-//	}
 	
 	@DeleteMapping("/delete/{id_hd}/{id_pdp}/{id_p}")
 	public ResponseEntity<?> deleteCTHDById(@PathVariable("id_hd") Long id_hd,
