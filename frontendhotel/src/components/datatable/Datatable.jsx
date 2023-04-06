@@ -1,12 +1,12 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { reservationColumns } from "../datatablesource";
+import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const DataTableOrder = ({reserva}) => {
-  const [data, setData] = useState(reserva);
- 
+const Datatable = () => {
+  const [data, setData] = useState(userRows);
+
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
@@ -19,6 +19,9 @@ const DataTableOrder = ({reserva}) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">View</div>
+            </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -32,10 +35,16 @@ const DataTableOrder = ({reserva}) => {
   ];
   return (
     <div className="datatable">
+      <div className="datatableTitle">
+        Add New User
+        <Link to="/users/new" className="link">
+          Add New
+        </Link>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={reservationColumns.concat(actionColumn)}
+        columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
@@ -44,4 +53,4 @@ const DataTableOrder = ({reserva}) => {
   );
 };
 
-export default DataTableOrder;
+export default Datatable;
