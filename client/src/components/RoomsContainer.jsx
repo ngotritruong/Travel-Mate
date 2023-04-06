@@ -41,7 +41,7 @@ const RoomsContainer = () => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price $1000</label>
+            <label htmlFor="price">Price 1.000.000 VND</label>
             <input
               type="range"
               name="price"

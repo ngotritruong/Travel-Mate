@@ -9,6 +9,7 @@ import pinRoute from "./routes/pins.js";
 import adminRoute from "./routes/admin.js";
 import tipRoute from "./routes/tips.js";
 import rooms from "./routes/rooms.js";
+import reserva from "./routes/reserva.js";
 import multer from "multer";
 import path from "path";
 import cors from "cors";
@@ -49,6 +50,7 @@ app.use("/api/pins", pinRoute);
 app.use("/api/tips", tipRoute);
 app.use("/api/admins", adminRoute);
 app.use("/api/rooms",rooms);
+app.use("/api/reserva",reserva);
 app.use("/api/categories", categoryRoute);
 app.listen(8800, ()=>{
     connect();
