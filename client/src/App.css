@@ -440,7 +440,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 18px 18px 1000px;
   border-radius: 5px;
 }
 

@@ -43,7 +43,6 @@ public class CTHDResouce {
 	public ResponseEntity<CTHD> addCTHD(@RequestBody CTHD cthd) {
 		CTHD newCTHD = cthdService.addCTHD(cthd);
 		cthdService.tinhTienThue(newCTHD);
-		// cthdService.tinhTienDV(newCTHD);
 		cthdService.tinhTienHD(newCTHD);	
 		return new ResponseEntity<>(newCTHD, HttpStatus.CREATED);
 	}

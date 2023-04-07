@@ -1,0 +1,83 @@
+.addNewBill{
+    width: 100%;
+    display: flex;
+  
+    .addNewBillContainer {
+      flex: 6;
+  
+      .top,
+      .bottom {
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 10px;
+        margin: 20px;
+        display: flex;
+  
+        h1 {
+          color: lightgray;
+          font-size: 20px;
+        }
+        .right {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+             margin: 40px;
+          form {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 400px;
+  
+            .formInput {
+              width: 100%;
+  
+              label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .icon {
+                  cursor: pointer;
+                }
+              }
+  
+              input, select{
+                width: 100% ;
+                padding: 10px ;
+                border: none ;
+                border-bottom: 1px solid gray;
+              }
+              span{
+                color: tomato;
+                font-size: 12px;
+              }
+            }
+            .dateTime{
+                display: flex;
+                flex-direction: column;
+                label{
+                    padding-bottom: 10px;
+                }
+                #dateTimePicker{
+                    border: none;
+                }
+            }
+            
+            .buttonAddReservation {
+              width: 150px;
+              padding: 10px;
+              margin: 0 auto;
+              border: none;
+              background-color: #537FE7;
+              color: white;
+              font-weight: bold;
+              cursor: pointer;
+              margin-top: 10px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+  

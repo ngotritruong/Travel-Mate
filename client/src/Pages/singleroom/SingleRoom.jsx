@@ -17,10 +17,9 @@ function SingleRoom() {
   let { state } = useLocation();
   const [cookies, setCookie] = useCookies(['iduser']);
   const [error, setError] = useState();
-  console.log(cookies.iduser)
-  console.log(state.id)
+
   const { user, dispatch } = useContext(Context);
-  const [activeBt, setActiveBt] = useState(true);
+  const [activeBt, setActiveBt] = useState(false);
   console.log(activeBt)
   const [valueDate, setValueDate] = useState([new Date(), new Date()]);
   const handleInputChange = status => {
@@ -36,6 +35,26 @@ function SingleRoom() {
           moment(valueDate[1]).format("YYYY-MM-DD hh:mm:ss")
       );
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+        try {
+            const res = await axios.post("/rooms/reserva", {
+                id_kh: cookies.iduser,
+                id_nv: 10,
+                ngay_dat: moment(valueDate[0]).format("YYYY-MM-DD hh:mm:ss"),
+                ngay_tra_dk: moment(valueDate[1]).format("YYYY-MM-DD hh:mm:ss"),
+                tien_coc: 0,
+                maphongdk: state.id,
+                tinh_trang: 0
+            });
+            res.data && window.location.replace("/order");
+            alert("success")
+        } catch (err) {
+            setError("Some thing went wrong");
+        }
+};
 
   return (
 
@@ -62,7 +81,7 @@ function SingleRoom() {
                   <p className="valueIp"><b>Phone number:</b> {user.phone}</p>
                   <p className="valueIp"><b>Email:</b> {user.email}</p>
                 </form>
-                <button className="btn-primary btn_submit kh" >Booking now</button>
+                <button className="btn-primary btn_submit kh" onClick={handleSubmit}>Booking now</button>
               </div>
             }
             <StyledHero img={image1}>

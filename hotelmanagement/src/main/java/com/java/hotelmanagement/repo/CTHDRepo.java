@@ -20,14 +20,6 @@ public interface CTHDRepo extends JpaRepository<CTHD, Long> {
 	@Query(value = "SELECT c FROM ct_hd WHERE id_hd = ?1 AND id_pdp = ?2 AND id_p = ?3",nativeQuery = true)
 	Optional<CTHD> findCTHDById(Long id_hd, Long id_pdp, Long id_p);
 	
-//	@Query("SELECT c FROM CTHD")
-//	List<CTHD> findALLCTHD();
-//	@Transactional
-//	@Modifying
-//	@Query(value ="UPDATE ct_hd SET tien_thue = :#{#c.tien_thue}, tien_dv = :#{#c.tien_dv} "
-//			+ " WHERE id_hd = :#{#c.id_hd} AND id_pdp = :#{#c.id_pdp} AND id_p = :#{#c.id_p} ",nativeQuery = true)
-//	int updateCTHD(@Param("c") CTHD cthd);
-	
 	@Transactional
 	@Modifying
 	@Query(value = "UPDATE ct_hd SET tien_thue = (SELECT COALESCE(SUM(P.don_gia * DATEDIFF(HD.ngay_lap,PD.ngay_dat)),0) "
@@ -38,15 +30,6 @@ public interface CTHDRepo extends JpaRepository<CTHD, Long> {
 			,nativeQuery = true)
 	void tinhTienThue(@Param("c") CTHD cthd);
 	
-	// @Transactional
-	// @Modifying
-	// @Query(value = "UPDATE ct_hd SET tien_dv = (SELECT COALESCE(SUM(DV.don_gia * PSD.so_luong),0) "
-	// 		+ " FROM phieu_su_dung PSD, (SELECT * FROM ct_hd) AS CT, dich_vu DV "
-	// 		+ " WHERE CT.id_hd = :#{#c.id_hd}  AND CT.id_pdp = :#{#c.id_pdp} AND CT.id_p = :#{#c.id_p} "
-	// 		+ " AND CT.id_p=PSD.id_p AND CT.id_pdp = PSD.id_pdp AND PSD.id_dv=DV.id) "
-	// 		+ " WHERE id_hd = :#{#c.id_hd}  AND id_pdp = :#{#c.id_pdp} AND id_p = :#{#c.id_p}"
-	// 		,nativeQuery = true)
-	// void tinhTienDV(@Param("c") CTHD cthd);
 	
 	@Transactional
 	@Modifying

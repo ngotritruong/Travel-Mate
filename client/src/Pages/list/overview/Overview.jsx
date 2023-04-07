@@ -21,7 +21,6 @@ const Overview = () => {
                 "X-RapidAPI-Host": "wiki-briefs.p.rapidapi.com",
             },
         };
-
         const getPlaceDetail = async () => {
             setInfo();
             const { data } = await axios.get(URL, options);

@@ -1,16 +1,22 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../datatablesource";
+import { billColumn } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
+const DataBill = ({ bill }) => {
+  const [data, setData] = useState(bill);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/hoadon/delete/${id}`);
+      setData(data.filter((item) => item._id !== id));
+      window.location.reload("/hoadon");
+    } catch (err) {
+        console.log(err)
+    }
   };
-
   const actionColumn = [
     {
       field: "action",
@@ -19,12 +25,9 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete( params.row.id)}
             >
               Delete
             </div>
@@ -36,15 +39,15 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
+        Hóa đơn thanh toán
+        <Link to="/bill/addnewbill" className="link">
+          Thêm Mới
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={billColumn.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
@@ -53,4 +56,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default DataBill;
