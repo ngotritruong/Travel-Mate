@@ -1,0 +1,11 @@
+{
+  "name": "travel-mate",
+  "version": "1.0.0",
+  "description": "1. Clone the repository.\r 2. Install dependencies with `npm install`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
