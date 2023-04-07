@@ -5,9 +5,21 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    paths: 
+      - '**.js'
+      - '!docs/**'
+      - '!dev/**'
+    branches: 
+      - 'nguyenthithu'
+      - 'release/**'
+      - '!dev/**' 
   pull_request:
-    branches: [ "master" ]
+    types:
+      - opened
+      - closed
+      - synchronize
+      - unlabeled      
+    branches: [ "nguyenthithu" ]
 
 jobs:
   build:
@@ -16,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
