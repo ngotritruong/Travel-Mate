@@ -12,12 +12,12 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
         
-        node-version: [14.21.3,16.20.0,18.15.0]
+        node-version: [18.15.0]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
