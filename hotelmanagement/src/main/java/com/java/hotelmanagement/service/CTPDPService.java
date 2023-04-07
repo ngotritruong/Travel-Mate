@@ -33,10 +33,6 @@ public class CTPDPService {
 				.orElseThrow(() -> new CTPDPNotFoundException("Chi tiet phieu dat phong by id " + id_pdp + " was not found"));
 	}
 	
-//	public int updateCTPDP(CTPDP ctpdp) {
-//		return ctpdpRepo.updateCTPDP(ctpdp);
-//	}
-	
 	public void deleteCTPDPById(Long id_pdp, Long id_p) {
 		ctpdpRepo.deleteCTPDPById(id_pdp,id_p);
 	}

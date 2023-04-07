@@ -31,10 +31,6 @@ public class CTHDService {
 				.orElseThrow(() -> new CTHDNotFoundException("Chi tiet hoa don by id " + id_hd + " was not found"));
 	}
 	
-//	public int updateCTHD(CTHD cthd) {
-//		return cthdRepo.updateCTHD(cthd);
-//	}
-	
 	public void deleteCTHDById(Long id_hd, Long id_pdp, Long id_p) {
 		cthdRepo.deleteCTHDById(id_hd,id_pdp,id_p);
 	}
@@ -42,10 +38,6 @@ public class CTHDService {
 	public void tinhTienThue(CTHD cthd) {
 		cthdRepo.tinhTienThue(cthd);
 	}
-	
-	// public void tinhTienDV(CTHD cthd) {
-	// 	cthdRepo.tinhTienDV(cthd);
-	// }
 	
 	public void tinhTienHD(CTHD cthd) {
 		cthdRepo.tinhTienHD(cthd);
